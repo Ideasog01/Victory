@@ -200,6 +200,16 @@ public class PlayerController : MonoBehaviour
         GameManager.playerInterface.DisplayXP();
     }
 
+    public void AddSpecialCharge(float amount)
+    {
+        _specialCharge += amount;
+
+        if(_specialCharge > specialMaxCharge)
+        {
+            _specialCharge = specialMaxCharge;
+        }
+    }
+
     #endregion
 
     #region Inventory

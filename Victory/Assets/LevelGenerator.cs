@@ -52,6 +52,11 @@ public class LevelGenerator : MonoBehaviour
 
     private void GenerateLevel()
     {
+        int cellX = Random.Range(1, (int)(gridSize.x - 1));
+        int cellY = Random.Range(1, (int)(gridSize.y - 1));
+
+        Instantiate(dungeonExitPrefab, new Vector3(cellX * offset.x, 3, -cellY * offset.y), Quaternion.identity);
+
         for (int x = 0; x < gridSize.x; x++)
         {
             for (int y = 0; y < gridSize.y; y++)
@@ -64,7 +69,7 @@ public class LevelGenerator : MonoBehaviour
                     float enemyRand = Random.Range(0, 100);
                     float resourceRand = Random.Range(0, 100);
 
-                    if(x != gridSize.x - 1 && y != gridSize.y - 1)
+                    if(x != cellX && y != cellY)
                     {
                         if (enemyChance > enemyRand)
                         {
@@ -75,11 +80,6 @@ public class LevelGenerator : MonoBehaviour
                         {
                             Instantiate(resourcePrefab, newRoom.transform.position + Vector3.up, Quaternion.identity);
                         }
-                    }
-
-                    if (x == gridSize.x - 1 && y == gridSize.y - 1)
-                    {
-                        Instantiate(dungeonExitPrefab, newRoom.transform.position + Vector3.up * 2, Quaternion.identity);
                     }
                 }
 

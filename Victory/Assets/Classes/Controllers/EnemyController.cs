@@ -20,6 +20,9 @@ public class EnemyController : MonoBehaviour
     private Vector3[] patrolLocations;
 
     [SerializeField]
+    private float enemySpecialCharge;
+
+    [SerializeField]
     private int enemyXp;
 
     private int _characterHealth;
@@ -125,6 +128,7 @@ public class EnemyController : MonoBehaviour
             }
 
             GameManager.playerController.AddExperience(enemyXp);
+            GameManager.playerController.AddSpecialCharge(enemySpecialCharge);
             Destroy(this.gameObject);
         }
     }

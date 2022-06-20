@@ -2759,7 +2759,7 @@ MonoBehaviour:
   targetRadius: 20
   targetIndicator: {fileID: 1333274654}
   specialMaxCharge: 100
-  specialChargeRate: 5
+  specialChargeRate: 0.72
   ability1: {fileID: 11400000, guid: 0e09a8cdbb4605642b262574becf2fe5, type: 2}
   ability2: {fileID: 11400000, guid: a0a6fb99370c05945a3ae04bcf25c9e5, type: 2}
   primaryAbility: {fileID: 11400000, guid: cd61af42619e389428cf892906913211, type: 2}
@@ -13066,7 +13066,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8696133, y: 1}
+    m_SensorSize: {x: 1.0331491, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14257,7 +14257,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8696133, y: 1}
+    m_SensorSize: {x: 1.0331491, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14963,7 +14963,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8696133, y: 1}
+    m_SensorSize: {x: 1.0331491, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -17179,7 +17179,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8696133, y: 1}
+    m_SensorSize: {x: 1.0331491, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

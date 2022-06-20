@@ -54,6 +54,7 @@ MonoBehaviour:
   chaseThreshold: 20
   attackThreshold: 2
   patrolLocations: []
+  enemySpecialCharge: 15
   enemyXp: 20
   swordWeapon: {fileID: 3632438851301137427}
   attackCooldown: 1.2
