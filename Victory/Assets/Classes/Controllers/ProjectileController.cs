@@ -5,6 +5,9 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     [SerializeField]
+    private StatusEffect statusEffect;
+
+    [SerializeField]
     private Vector3 projectileMovementSpeed;
 
     [SerializeField]
@@ -100,6 +103,12 @@ public class ProjectileController : MonoBehaviour
                 if (collisionTag == "Enemy")
                 {
                     other.GetComponent<EnemyController>().TakeDamage(projectileDamage);
+
+                    if(statusEffect != null)
+                    {
+                        other.GetComponent<EnemyController>().AddEffect(statusEffect);
+                    }
+
                     this.gameObject.SetActive(false);
                 }
             }

@@ -2,41 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceController : MonoBehaviour
+public class ResourceController : Interactable
 {
-    [SerializeField]
-    private float distanceThreshold;
 
     [SerializeField]
     private Item resourceItem;
 
-    private PlayerController _playerController;
+    [SerializeField]
+    private int resourceAmount;
 
-    public float DistanceThreshold
+    public void PickupItem()
     {
-        get { return distanceThreshold; }
-    }
-
-    public Item ResourceItem
-    {
-        get { return resourceItem; }
-    }
-
-    private void Awake()
-    {
-        _playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
-    }
-
-    private void Update()
-    {
-        if(ResourceManager.nearbyResource != this)
-        {
-            float distanceToPlayer = Vector3.Distance(this.transform.position, _playerController.transform.position);
-
-            if (distanceToPlayer < distanceThreshold)
-            {
-                ResourceManager.nearbyResource = this;
-            }
-        }
+        Debug.Log("Item Picked Up");
+        GameManager.playerController.AddItem(resourceItem, resourceAmount);
+        this.gameObject.SetActive(false);
     }
 }

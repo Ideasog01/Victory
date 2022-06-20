@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public static bool controllerConnected;
+
     [SerializeField]
     private bool buildMode;
 
     private PlayerInput _playerInput;
     private PlayerController _playerController;
+    private InventoryInterface _inventoryInterface;
     private CivilianManager _civManager;
 
     private void Awake()
@@ -18,6 +21,7 @@ public class InputManager : MonoBehaviour
         if(!buildMode)
         {
             _playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
+            _inventoryInterface = this.GetComponent<InventoryInterface>();
             InitialiseExplorationInput();
         }
         else
@@ -46,10 +50,14 @@ public class InputManager : MonoBehaviour
         _playerInput.ExplorationMode.Primary.performed += ctx => _playerController.Primary();
         _playerInput.ExplorationMode.Secondary.performed += ctx => _playerController.Secondary();
 
+        _playerInput.ExplorationMode.SwitchTarget.performed += ctx => _playerController.SwitchTarget();
+        _playerInput.ExplorationMode.LockOn.performed += ctx => _playerController.AssignTarget();
+
+        _playerInput.ExplorationMode.Inventory.performed += ctx => _inventoryInterface.DisplayInventory();
+
         _playerInput.ExplorationMode.Primary.started += ctx => _playerController.PrimaryActivate();
         _playerInput.ExplorationMode.Primary.canceled += ctx => _playerController.PrimaryDeactivate();
 
-        _playerInput.ExplorationMode.Jump.performed += ctx => _playerController.Jump();
         _playerInput.ExplorationMode.Interact.performed += ctx => _playerController.Interact();
         _playerInput.ExplorationMode.Ability1.performed += ctx => _playerController.Ability1();
         _playerInput.ExplorationMode.Ability2.performed += ctx => _playerController.Ability2();

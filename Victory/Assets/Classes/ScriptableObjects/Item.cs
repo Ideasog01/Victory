@@ -3,7 +3,9 @@
 [CreateAssetMenu(fileName = "Item", menuName = "Item", order = 0)]
 public class Item : ScriptableObject
 {
-    public int itemCount;
+    public int maxItemAmount;
 
-    public int value;
+    public Sprite itemIcon;
+
+    public string itemDisplayName;
 }

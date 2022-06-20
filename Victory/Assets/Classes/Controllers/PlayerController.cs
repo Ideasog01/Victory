@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    #region Variables
+    #region Variables & Properties
 
     public static Vector2 movementInput;
     public static Vector2 mousePosition;
     public static Transform playerTarget;
+    public static bool disablePlayer;
+    public static Vector3 playerCheckpoint;
+    public static Interactable nearbyInteractable;
+    public static List<EnemyController> nearbyEnemyList = new List<EnemyController>();
+    public static EnemyController currentTarget;
+
+    public PlayerData playerData;
 
     public enum Class { Archer, Knight, HolyWarrior };
 
@@ -25,13 +32,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
-    [Header("Jump Settings")]
+    [SerializeField]
+    private int playerMaxHealth;
 
     [SerializeField]
-    private float jumpForce;
+    private float targetRadius;
 
     [SerializeField]
-    private float maxJumpHeight;
+    private GameObject targetIndicator;
 
     [Header("Ability Settings")]
 
@@ -54,13 +62,10 @@ public class PlayerController : MonoBehaviour
     private Ability secondaryAbility;
 
     private Rigidbody _playerRb;
-    private Transform _groundCheck;
 
-    private bool _doubleJumpUsed;
-    private bool _isJumping;
-
-    private float _jumpHeight;
     private float _specialCharge;
+
+    private int _playerHealth;
 
     private Quaternion _targetRotation;
 
@@ -68,7 +73,21 @@ public class PlayerController : MonoBehaviour
 
     private ArcherController _archerController;
 
-    private ResourceManager _resourceManager;
+    private GameManager _gameManager;
+
+    private int _targetIndex;
+    private float _targetSwitchBuffer;
+
+    public int PlayerMaxHealth
+    {
+        get { return playerMaxHealth; }
+    }
+
+    public int PlayerHealth
+    {
+        set { _playerHealth = value; }
+        get { return _playerHealth; }
+    }
 
     public Rigidbody PlayerRigidBody
     {
@@ -103,9 +122,8 @@ public class PlayerController : MonoBehaviour
     {
         _gameCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         _playerRb = this.GetComponent<Rigidbody>();
-        _groundCheck = this.transform.GetChild(1);
 
-        _resourceManager = GameObject.Find("GameManager").GetComponent<ResourceManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if (playerClass == Class.Archer)
         {
@@ -119,23 +137,21 @@ public class PlayerController : MonoBehaviour
         ability2.RefreshAbility();
     }
 
+    private void Start()
+    {
+        _playerHealth = playerMaxHealth;
+        GameManager.playerInterface.DisplayPlayerHealth();
+        GameManager.playerInterface.DisplayXP();
+    }
+
     private void FixedUpdate()
     {
-        if(movementInput.x != 0 || movementInput.y != 0)
+        if(!disablePlayer)
         {
-            ApplyMovement();
-        }
-
-        FaceDirection();
-
-        if (_isJumping)
-        {
-            if (this.transform.position.y > _jumpHeight)
+            if (movementInput.x != 0 || movementInput.y != 0)
             {
-                _isJumping = false;
+                ApplyMovement();
             }
-
-            ApplyJumpForce();
         }
     }
 
@@ -148,7 +164,118 @@ public class PlayerController : MonoBehaviour
             _archerController.UpdateArcher();
         }
 
+        FaceDirection();
+
         UpdateAbilityCooldowns();
+
+        FindTargets();
+
+        if(currentTarget != null)
+        {
+            targetIndicator.SetActive(true);
+            targetIndicator.transform.position = currentTarget.transform.position + new Vector3(0, -0.75f, 0);
+        }
+        else
+        {
+            targetIndicator.SetActive(false);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        _playerHealth -= amount;
+        GameManager.playerInterface.DisplayPlayerHealth();
+
+        if(_playerHealth <= 0)
+        {
+            disablePlayer = true;
+            _gameManager.PlayerDefeat();
+        }
+    }
+
+    public void AddExperience(int amount)
+    {
+        playerData.playerExperience += amount;
+
+        GameManager.playerInterface.DisplayXP();
+    }
+
+    #endregion
+
+    #region Inventory
+
+    public void AddItem(Item item, int amount)
+    {
+        bool itemFound = false;
+        int extraAmount = 0;
+
+        foreach(Item inventoryItem in playerData.inventoryItems)
+        {
+            if(inventoryItem == item)
+            {
+                int currentAmount = playerData.inventoryAmounts[playerData.inventoryItems.IndexOf(inventoryItem)];
+                
+                if(currentAmount + amount < item.maxItemAmount)
+                {
+                    playerData.inventoryAmounts[playerData.inventoryItems.IndexOf(inventoryItem)] = currentAmount + amount;
+                    itemFound = true;
+                }
+                else
+                {
+                    extraAmount = amount - item.maxItemAmount;
+                    playerData.inventoryAmounts[playerData.inventoryItems.IndexOf(inventoryItem)] = item.maxItemAmount;
+                }
+            }
+        }
+
+        if(!itemFound)
+        {
+            if(playerData.inventoryItems.Count + 1 < playerData.maxItemAmount)
+            {
+                playerData.inventoryItems.Add(item);
+
+                if(extraAmount == 0)
+                {
+                    playerData.inventoryAmounts.Add(amount);
+                }
+                else
+                {
+                    playerData.inventoryAmounts.Add(extraAmount);
+                }
+            }
+        }
+    }
+
+    public void RemoveItem(Item item, int amount)
+    {
+        int extraAmount = 0;
+
+        for(int i = 0; i < playerData.inventoryItems.Count; i++)
+        {
+            if (playerData.inventoryItems[i] == item)
+            {
+                if(amount == playerData.inventoryAmounts[i])
+                {
+                    playerData.inventoryItems.RemoveAt(i);
+                    playerData.inventoryAmounts.RemoveAt(i);
+                }
+                else if(amount > playerData.inventoryAmounts[i])
+                {
+                    extraAmount = amount - playerData.inventoryAmounts[i];
+                    playerData.inventoryItems.RemoveAt(i);
+                    playerData.inventoryAmounts.RemoveAt(i);
+                }
+                else
+                {
+                    playerData.inventoryAmounts[i] -= amount;
+                }
+            }
+        }
+
+        if(extraAmount > 0)
+        {
+            RemoveItem(item, extraAmount);
+        }
     }
 
     #endregion
@@ -157,112 +284,142 @@ public class PlayerController : MonoBehaviour
 
     public void Primary()
     {
-        if(primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+        if(!disablePlayer)
         {
-            
-        }
-
-        RaycastHit hit;
-
-        if(Physics.Raycast(_gameCamera.ScreenPointToRay(mousePosition), out hit))
-        {
-            if(hit.collider.CompareTag("Enemy"))
+            if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
             {
-                playerTarget = hit.transform;
+
+            }
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(_gameCamera.ScreenPointToRay(mousePosition), out hit))
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    playerTarget = hit.transform;
+                }
             }
         }
     }
 
     public void PrimaryActivate()
     {
-        if(primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+        if(!disablePlayer)
         {
-            if (playerClass == Class.Archer)
+            if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
             {
-                _archerController.ChargingArrow = true;
+                if (playerClass == Class.Archer)
+                {
+                    _archerController.ChargingArrow = true;
+                }
             }
         }
     }
 
     public void PrimaryDeactivate()
     {
-        if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+        if(!disablePlayer)
         {
-            if (playerClass == Class.Archer)
+            if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
             {
-                _archerController.ReleaseArrow();
-                _archerController.ChargingArrow = false;
+                if (playerClass == Class.Archer)
+                {
+                    _archerController.ReleaseArrow();
+                    _archerController.ChargingArrow = false;
+                }
             }
         }
     }
 
     public void Secondary()
     {
-        if (secondaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+        if(!disablePlayer)
         {
-            if (playerClass == Class.Archer)
+            if (secondaryAbility.abilityStatus == Ability.AbilityStatus.Available)
             {
-                _archerController.SpawnDaggerProjectile();
-                secondaryAbility.UseAbility();
+                if (playerClass == Class.Archer)
+                {
+                    _archerController.SpawnDaggerProjectile();
+                    secondaryAbility.UseAbility();
+                }
             }
         }
     }
 
     public void Ability1()
     {
-        if(ability1.abilityStatus == Ability.AbilityStatus.Available)
+        if(!disablePlayer)
         {
-            if (playerClass == Class.Archer)
+            if (ability1.abilityStatus == Ability.AbilityStatus.Available)
             {
-                this.GetComponent<ArcherController>().ActivateDash();
-                ability1.UseAbility();
+                if (playerClass == Class.Archer)
+                {
+                    this.GetComponent<ArcherController>().ActivateDash();
+                    ability1.UseAbility();
+                }
             }
         }
     }
 
     public void Ability2()
     {
-        if(ability2.abilityStatus == Ability.AbilityStatus.Available)
+        if(!disablePlayer)
         {
-            if (playerClass == Class.Archer)
+            if (ability2.abilityStatus == Ability.AbilityStatus.Available)
             {
-                this.GetComponent<ArcherController>().ExplosiveShotActive = true;
+                if (playerClass == Class.Archer)
+                {
+                    this.GetComponent<ArcherController>().ExplosiveShotActive = true;
+                }
             }
         }
     }
 
     public void SpecialAbility()
     {
-        if(_specialCharge >= 25 && _specialCharge < 50)
+        if(!disablePlayer)
         {
-            if(playerClass == Class.Archer)
+            if (_specialCharge >= 25 && _specialCharge < 50)
             {
-                _archerController.SuperiorReflex = 3;
-                _specialCharge = 0;
+                if (playerClass == Class.Archer)
+                {
+                    _archerController.SuperiorReflex = 3;
+                    _specialCharge = 0;
+                }
             }
-        }
 
-        if (_specialCharge >= 50 && _specialCharge < 75)
-        {
-            if (playerClass == Class.Archer)
+            if (_specialCharge >= 50 && _specialCharge < 75)
             {
-                _archerController.PoisonShotActive = true;
-                _specialCharge = 0;
+                if (playerClass == Class.Archer)
+                {
+                    _archerController.PoisonShotActive = true;
+                    _specialCharge = 0;
+                }
             }
-        }
 
-        if (_specialCharge >= 75)
-        {
-            if (playerClass == Class.Archer)
+            if (_specialCharge >= 75)
             {
-                _specialCharge = 0;
+                if (playerClass == Class.Archer)
+                {
+                    _archerController.SpawnHunterTrap();
+                    _specialCharge = 0;
+                }
             }
         }
     }
 
     public void Interact()
     {
-        _resourceManager.Interact();
+        if(!disablePlayer)
+        {
+            if(nearbyInteractable != null)
+            {
+                nearbyInteractable.Interact();
+                nearbyInteractable = null;
+                GameManager.playerInterface.DisplayInteractPrompt(false);
+            }
+        }
     }
 
     private void UpdateAbilityCooldowns()
@@ -326,65 +483,86 @@ public class PlayerController : MonoBehaviour
 
     #region Movement
 
-    public void Jump()
+    private void FaceDirection()
     {
-        if(IsGrounded())
+        if(!disablePlayer)
         {
-            _jumpHeight = this.transform.position.y + maxJumpHeight;
-            _isJumping = true;
-            _doubleJumpUsed = false;
-        }
-        else if(!_doubleJumpUsed)
-        {
-            _jumpHeight = this.transform.position.y + maxJumpHeight;
-            _doubleJumpUsed = true;
-            _isJumping = true;
+            if(currentTarget != null)
+            {
+                _targetRotation = Quaternion.LookRotation(currentTarget.transform.position - this.transform.position);
+            }
+            else
+            {
+                if(movementInput.x != 0 || movementInput.y != 0)
+                {
+                    _targetRotation = Quaternion.LookRotation(new Vector3(movementInput.y, 0, -movementInput.x));
+                }
+            }
+
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, _targetRotation, Time.deltaTime * turnSpeed);
         }
     }
 
-    private void FaceDirection()
+    public void AssignTarget()
     {
-        if(playerTarget != null)
+        if(!disablePlayer)
         {
-            Vector3 direction = playerTarget.position - this.transform.position;
-            direction.y = 0;
-
-            _targetRotation = Quaternion.LookRotation(direction);
-        }
-        else
-        {
-            if(movementInput.x != 0 || movementInput.y != 0)
+            if(currentTarget == null)
             {
-                Vector3 direction = new Vector3(movementInput.y, 0, -movementInput.x);
-                direction.y = 0;
-
-                _targetRotation = Quaternion.LookRotation(direction);
+                if(nearbyEnemyList.Count > 0)
+                {
+                    _targetIndex = 0;
+                    currentTarget = nearbyEnemyList[_targetIndex];
+                }
+            }
+            else
+            {
+                currentTarget = null;
             }
         }
+    }
 
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, _targetRotation, Time.deltaTime * turnSpeed);
+    private void FindTargets()
+    {
+        Collider[] enemyColliders = Physics.OverlapSphere(this.transform.position, targetRadius);
+
+        foreach (Collider collider in enemyColliders)
+        {
+            if(collider.CompareTag("Enemy"))
+            {
+                if(!nearbyEnemyList.Contains(collider.GetComponent<EnemyController>()))
+                {
+                    nearbyEnemyList.Add(collider.GetComponent<EnemyController>());
+                }
+            }
+        }
+    }
+
+    public void SwitchTarget()
+    {
+        if(nearbyEnemyList.Count > 0)
+        {
+            if (_targetSwitchBuffer <= 0)
+            {
+                _targetIndex++;
+
+                if (_targetIndex >= nearbyEnemyList.Count)
+                {
+                    _targetIndex = 0;
+                }
+
+                currentTarget = nearbyEnemyList[_targetIndex];
+            }
+            else
+            {
+                _targetSwitchBuffer -= Time.deltaTime * 1;
+            }
+        }
     }
 
     private void ApplyMovement()
     {
         _playerRb.MovePosition(transform.position + new Vector3(movementInput.y, 0, -movementInput.x) * Time.deltaTime * movementSpeed);
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics.CheckSphere(_groundCheck.position, 0.5f, groundLayer);
-    }
-
-    private void ApplyJumpForce()
-    {
-        if(!_doubleJumpUsed)
-        {
-            _playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-        else
-        {
-            _playerRb.AddForce(Vector3.up * jumpForce * 1.2f, ForceMode.Impulse);
-        }
     }
 
     #endregion

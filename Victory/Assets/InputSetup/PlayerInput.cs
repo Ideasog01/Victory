@@ -107,6 +107,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""be9db590-e88d-4266-871e-981773c12a2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""f148f3f8-bcb1-4426-a265-1a85f41c3ce0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d00a909-24fa-4f53-a75f-d04d9f41bc63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,7 +294,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1021898c-768b-4ab3-927f-5cd0251799cd"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -305,6 +332,72 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""SpecialAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10765781-22ed-47e2-ba6a-678b6a5efa1f"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b154496b-b783-41fe-9e32-7deb9af73aea"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c30fc720-fdb4-435d-ac42-fc966d0b0d26"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SwitchTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22746921-07ea-4697-bf8e-b20a69a886f1"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""279d6e4a-5551-4238-91fb-f362270452ca"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15de54dd-c3e2-400c-9c18-e577deddbf70"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -517,6 +610,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_ExplorationMode_Ability1 = m_ExplorationMode.FindAction("Ability1", throwIfNotFound: true);
         m_ExplorationMode_Ability2 = m_ExplorationMode.FindAction("Ability2", throwIfNotFound: true);
         m_ExplorationMode_SpecialAbility = m_ExplorationMode.FindAction("SpecialAbility", throwIfNotFound: true);
+        m_ExplorationMode_Inventory = m_ExplorationMode.FindAction("Inventory", throwIfNotFound: true);
+        m_ExplorationMode_SwitchTarget = m_ExplorationMode.FindAction("SwitchTarget", throwIfNotFound: true);
+        m_ExplorationMode_LockOn = m_ExplorationMode.FindAction("LockOn", throwIfNotFound: true);
         // BuildMode
         m_BuildMode = asset.FindActionMap("BuildMode", throwIfNotFound: true);
         m_BuildMode_MovementInput = m_BuildMode.FindAction("MovementInput", throwIfNotFound: true);
@@ -591,6 +687,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_ExplorationMode_Ability1;
     private readonly InputAction m_ExplorationMode_Ability2;
     private readonly InputAction m_ExplorationMode_SpecialAbility;
+    private readonly InputAction m_ExplorationMode_Inventory;
+    private readonly InputAction m_ExplorationMode_SwitchTarget;
+    private readonly InputAction m_ExplorationMode_LockOn;
     public struct ExplorationModeActions
     {
         private @PlayerInput m_Wrapper;
@@ -604,6 +703,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Ability1 => m_Wrapper.m_ExplorationMode_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_ExplorationMode_Ability2;
         public InputAction @SpecialAbility => m_Wrapper.m_ExplorationMode_SpecialAbility;
+        public InputAction @Inventory => m_Wrapper.m_ExplorationMode_Inventory;
+        public InputAction @SwitchTarget => m_Wrapper.m_ExplorationMode_SwitchTarget;
+        public InputAction @LockOn => m_Wrapper.m_ExplorationMode_LockOn;
         public InputActionMap Get() { return m_Wrapper.m_ExplorationMode; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -640,6 +742,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @SpecialAbility.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSpecialAbility;
                 @SpecialAbility.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSpecialAbility;
                 @SpecialAbility.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSpecialAbility;
+                @Inventory.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInventory;
+                @SwitchTarget.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSwitchTarget;
+                @SwitchTarget.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSwitchTarget;
+                @SwitchTarget.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSwitchTarget;
+                @LockOn.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
+                @LockOn.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
+                @LockOn.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
             }
             m_Wrapper.m_ExplorationModeActionsCallbackInterface = instance;
             if (instance != null)
@@ -671,6 +782,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @SpecialAbility.started += instance.OnSpecialAbility;
                 @SpecialAbility.performed += instance.OnSpecialAbility;
                 @SpecialAbility.canceled += instance.OnSpecialAbility;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
+                @SwitchTarget.started += instance.OnSwitchTarget;
+                @SwitchTarget.performed += instance.OnSwitchTarget;
+                @SwitchTarget.canceled += instance.OnSwitchTarget;
+                @LockOn.started += instance.OnLockOn;
+                @LockOn.performed += instance.OnLockOn;
+                @LockOn.canceled += instance.OnLockOn;
             }
         }
     }
@@ -761,6 +881,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
         void OnSpecialAbility(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
+        void OnSwitchTarget(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
     }
     public interface IBuildModeActions
     {

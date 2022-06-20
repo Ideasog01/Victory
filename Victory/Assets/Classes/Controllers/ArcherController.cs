@@ -7,6 +7,9 @@ public class ArcherController : PlayerController
     [SerializeField]
     private LayerMask enemyLayer;
 
+    [SerializeField]
+    private Transform hunterTrap;
+
     [Header("Arrow Settings")]
 
     [SerializeField]
@@ -96,6 +99,11 @@ public class ArcherController : PlayerController
     public void SpawnDaggerProjectile()
     {
         GameManager.projectileManager.SpawnDaggerProjectile(_projectileSpawn.position, this.transform.localEulerAngles);
+    }
+
+    public void SpawnHunterTrap()
+    {
+        Instantiate(hunterTrap, this.transform.position + new Vector3(0, -0.5f, 0), this.transform.rotation);
     }
 
     private void SpawnArrowProjectile()

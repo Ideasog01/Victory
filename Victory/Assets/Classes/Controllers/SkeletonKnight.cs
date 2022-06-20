@@ -4,10 +4,30 @@ using UnityEngine;
 
 public class SkeletonKnight : EnemyController
 {
+    [SerializeField]
+    private WeaponController swordWeapon;
+
+    [SerializeField]
+    private float attackCooldown;
+
+    private float _attackTimer;
+
     private void Update()
     {
         EnemyAIStateMachine();
         EnemyBehaviour();
+    }
+
+    public void ActivateWeapon()
+    {
+        if(swordWeapon.IsWeaponActive)
+        {
+            swordWeapon.IsWeaponActive = false;
+        }
+        else
+        {
+            swordWeapon.IsWeaponActive = true;
+        }
     }
 
     private void EnemyBehaviour()
@@ -32,6 +52,18 @@ public class SkeletonKnight : EnemyController
                 {
                     PatrolLocationSet = false;
                 }
+            }
+        }
+        else if(EnemyState == AIState.Attack)
+        {
+            if(_attackTimer <= 0)
+            {
+                EnemyAnimator.SetTrigger("attack");
+                _attackTimer = attackCooldown;
+            }
+            else
+            {
+                _attackTimer -= Time.deltaTime * 1;
             }
         }
     }
