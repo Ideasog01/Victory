@@ -17,6 +17,9 @@ public class EnemyController : MonoBehaviour
     private float attackThreshold;
 
     [SerializeField]
+    private float stoppingThreshold;
+
+    [SerializeField]
     private Vector3[] patrolLocations;
 
     [SerializeField]
@@ -179,6 +182,11 @@ public class EnemyController : MonoBehaviour
         {
             _navMeshAgent.SetDestination(this.transform.position);
             return;
+        }
+
+        if(distanceToPlayer < stoppingThreshold)
+        {
+            SetEnemyDestination(this.transform.position);
         }
 
         if(distanceToPlayer < attackThreshold)

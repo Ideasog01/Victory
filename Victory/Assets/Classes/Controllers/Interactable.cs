@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public enum InteractableType { Resource, Chest };
+    public enum InteractableType { Resource, Chest, Dialogue };
 
     [SerializeField]
     private InteractableType interactableType;
@@ -38,6 +38,11 @@ public class Interactable : MonoBehaviour
             if (interactableType == InteractableType.Chest)
             {
                 this.GetComponent<ChestController>().OpenChest();
+            }
+
+            if(interactableType == InteractableType.Dialogue)
+            {
+                this.GetComponent<DialogueTrigger>().DialogueStart();
             }
 
             _isActive = false;

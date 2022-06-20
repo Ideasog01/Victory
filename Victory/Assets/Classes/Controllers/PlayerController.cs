@@ -550,23 +550,30 @@ public class PlayerController : MonoBehaviour
 
     public void SwitchTarget()
     {
-        if(nearbyEnemyList.Count > 0)
+        if(!disablePlayer)
         {
-            if (_targetSwitchBuffer <= 0)
+            if (nearbyEnemyList.Count > 0)
             {
-                _targetIndex++;
-
-                if (_targetIndex >= nearbyEnemyList.Count)
+                if (_targetSwitchBuffer <= 0)
                 {
-                    _targetIndex = 0;
-                }
+                    _targetIndex++;
 
-                currentTarget = nearbyEnemyList[_targetIndex];
+                    if (_targetIndex >= nearbyEnemyList.Count)
+                    {
+                        _targetIndex = 0;
+                    }
+
+                    currentTarget = nearbyEnemyList[_targetIndex];
+                }
+                else
+                {
+                    _targetSwitchBuffer -= Time.deltaTime * 1;
+                }
             }
-            else
-            {
-                _targetSwitchBuffer -= Time.deltaTime * 1;
-            }
+        }
+        else
+        {
+            GameManager.dialogueManager.NextDialogue();
         }
     }
 

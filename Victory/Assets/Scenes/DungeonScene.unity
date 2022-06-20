@@ -4493,8 +4493,9 @@ MonoBehaviour:
   levelNavMesh: {fileID: 527541281}
   enemyChance: 50
   resourceChance: 30
-  skeletonKnightEnemyPrefab: {fileID: 3632438850102270830, guid: e1fc86e8b53ea5f4bab1868672a122d3,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 3632438850102270830, guid: e1fc86e8b53ea5f4bab1868672a122d3, type: 3}
+  - {fileID: 8031783735394569232, guid: 1ea8f4954aa151b44ad7f5f94ecf3ad5, type: 3}
   resourcePrefab: {fileID: 6119431808804499428, guid: c569db9ac5d1e004d8d1ef7aecafd34e,
     type: 3}
   dungeonExitPrefab: {fileID: 4042012009800257349, guid: 73e296423f42feb4f9043d2ec21d1743,
@@ -13066,7 +13067,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0331491, y: 1}
+    m_SensorSize: {x: 1.3502762, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14257,7 +14258,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0331491, y: 1}
+    m_SensorSize: {x: 1.3502762, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14963,7 +14964,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0331491, y: 1}
+    m_SensorSize: {x: 1.3502762, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -17179,7 +17180,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0331491, y: 1}
+    m_SensorSize: {x: 1.3502762, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -17195,7 +17196,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653125466}
-  m_LocalRotation: {x: 0.33141357, y: 0.4619398, z: -0.19134177, w: 0.8001031}
+  m_LocalRotation: {x: 0.33141354, y: 0.46193975, z: -0.19134173, w: 0.8001032}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

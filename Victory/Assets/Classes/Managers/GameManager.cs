@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour
     public static PlayerController playerController;
     public static PlayerInterface playerInterface;
     public static InventoryInterface inventoryInterface;
+    public static DialogueManager dialogueManager;
 
     private void Awake()
     {
         projectileManager = this.GetComponent<ProjectileManager>();
         playerInterface = this.GetComponent<PlayerInterface>();
         inventoryInterface = this.GetComponent<InventoryInterface>();
+        dialogueManager = this.GetComponent<DialogueManager>();
+
         playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
 
         SceneManager.sceneLoaded += OnSceneLoad;

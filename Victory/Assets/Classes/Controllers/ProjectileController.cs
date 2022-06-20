@@ -111,6 +111,13 @@ public class ProjectileController : MonoBehaviour
 
                     this.gameObject.SetActive(false);
                 }
+
+                if(collisionTag == "Player")
+                {
+                    other.GetComponent<PlayerController>().TakeDamage(projectileDamage);
+
+                    this.gameObject.SetActive(false);
+                }
             }
 
             if(!other.CompareTag("Player"))

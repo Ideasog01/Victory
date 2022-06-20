@@ -35,7 +35,7 @@ public class LevelGenerator : MonoBehaviour
     private float resourceChance;
 
     [SerializeField]
-    private Transform skeletonKnightEnemyPrefab;
+    private Transform[] enemyPrefabs;
 
     [SerializeField]
     private Transform resourcePrefab;
@@ -73,7 +73,7 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (enemyChance > enemyRand)
                         {
-                            Instantiate(skeletonKnightEnemyPrefab, newRoom.transform.position + Vector3.up, Quaternion.identity);
+                            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], newRoom.transform.position + Vector3.up, Quaternion.identity);
                         }
 
                         if (resourceChance > resourceRand)
