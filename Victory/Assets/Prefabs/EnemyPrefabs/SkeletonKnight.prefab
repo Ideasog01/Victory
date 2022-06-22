@@ -53,7 +53,7 @@ MonoBehaviour:
   characterMaxHealth: 100
   chaseThreshold: 20
   attackThreshold: 4
-  stoppingThreshold: 2
+  stoppingThreshold: 1
   patrolLocations: []
   enemySpecialCharge: 15
   enemyXp: 20
@@ -87,7 +87,7 @@ NavMeshAgent:
   m_Acceleration: 14
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

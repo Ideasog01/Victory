@@ -61,8 +61,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Ability secondaryAbility;
 
-    private Rigidbody _playerRb;
-
     private float _specialCharge;
 
     private int _playerHealth;
@@ -75,8 +73,15 @@ public class PlayerController : MonoBehaviour
 
     private GameManager _gameManager;
 
+    private CharacterController _playerCharacterController;
+
     private int _targetIndex;
     private float _targetSwitchBuffer;
+
+    public CharacterController PlayerCharacterController
+    {
+        get { return _playerCharacterController; }
+    }
 
     public int PlayerMaxHealth
     {
@@ -87,11 +92,6 @@ public class PlayerController : MonoBehaviour
     {
         set { _playerHealth = value; }
         get { return _playerHealth; }
-    }
-
-    public Rigidbody PlayerRigidBody
-    {
-        get { return _playerRb; }
     }
 
     public Ability Ab1
@@ -121,8 +121,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _gameCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        _playerRb = this.GetComponent<Rigidbody>();
-
+        _playerCharacterController = this.GetComponent<CharacterController>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if (playerClass == Class.Archer)
@@ -142,17 +141,6 @@ public class PlayerController : MonoBehaviour
         _playerHealth = playerMaxHealth;
         GameManager.playerInterface.DisplayPlayerHealth();
         GameManager.playerInterface.DisplayXP();
-    }
-
-    private void FixedUpdate()
-    {
-        if(!disablePlayer)
-        {
-            if (movementInput.x != 0 || movementInput.y != 0)
-            {
-                ApplyMovement();
-            }
-        }
     }
 
     private void Update()
@@ -178,6 +166,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             targetIndicator.SetActive(false);
+        }
+
+        if (!disablePlayer)
+        {
+            if (movementInput.x != 0 || movementInput.y != 0)
+            {
+                ApplyMovement();
+            }
         }
     }
 
@@ -365,8 +361,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerClass == Class.Archer)
                 {
-                    this.GetComponent<ArcherController>().ActivateDash();
-                    ability1.UseAbility();
+                    this.GetComponent<ArcherController>().ExplosiveShotActive = true;
                 }
             }
         }
@@ -380,7 +375,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerClass == Class.Archer)
                 {
-                    this.GetComponent<ArcherController>().ExplosiveShotActive = true;
+                    this.GetComponent<ArcherController>().ActivateDash();
+                    ability1.UseAbility();
                 }
             }
         }
@@ -579,7 +575,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        _playerRb.MovePosition(transform.position + new Vector3(movementInput.y, 0, -movementInput.x) * Time.deltaTime * movementSpeed);
+        _playerCharacterController.Move(new Vector3(movementInput.y, 0, -movementInput.x) * Time.deltaTime * movementSpeed);
     }
 
     #endregion

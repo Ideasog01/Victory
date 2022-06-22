@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     private PlayerController _playerController;
     private InventoryInterface _inventoryInterface;
     private CivilianManager _civManager;
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class InputManager : MonoBehaviour
         if(!buildMode)
         {
             _playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
+            _gameManager = this.GetComponent<GameManager>();
             _inventoryInterface = this.GetComponent<InventoryInterface>();
             InitialiseExplorationInput();
         }
@@ -49,6 +51,8 @@ public class InputManager : MonoBehaviour
     {
         _playerInput.ExplorationMode.Primary.performed += ctx => _playerController.Primary();
         _playerInput.ExplorationMode.Secondary.performed += ctx => _playerController.Secondary();
+
+        _playerInput.ExplorationMode.Pause.performed += ctx => _gameManager.PauseGame();
 
         _playerInput.ExplorationMode.SwitchTarget.performed += ctx => _playerController.SwitchTarget();
         _playerInput.ExplorationMode.LockOn.performed += ctx => _playerController.AssignTarget();

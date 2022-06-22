@@ -134,6 +134,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe63dace-5640-4ae5-bc4d-cacbd4d7e214"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -404,7 +413,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""22746921-07ea-4697-bf8e-b20a69a886f1"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -415,7 +424,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""279d6e4a-5551-4238-91fb-f362270452ca"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -429,8 +438,30 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4b24d65-3b22-402d-8e6f-94bcabb4a008"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1febe076-255f-4cb6-a690-abb1f1917739"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -646,6 +677,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_ExplorationMode_Inventory = m_ExplorationMode.FindAction("Inventory", throwIfNotFound: true);
         m_ExplorationMode_SwitchTarget = m_ExplorationMode.FindAction("SwitchTarget", throwIfNotFound: true);
         m_ExplorationMode_LockOn = m_ExplorationMode.FindAction("LockOn", throwIfNotFound: true);
+        m_ExplorationMode_Pause = m_ExplorationMode.FindAction("Pause", throwIfNotFound: true);
         // BuildMode
         m_BuildMode = asset.FindActionMap("BuildMode", throwIfNotFound: true);
         m_BuildMode_MovementInput = m_BuildMode.FindAction("MovementInput", throwIfNotFound: true);
@@ -723,6 +755,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_ExplorationMode_Inventory;
     private readonly InputAction m_ExplorationMode_SwitchTarget;
     private readonly InputAction m_ExplorationMode_LockOn;
+    private readonly InputAction m_ExplorationMode_Pause;
     public struct ExplorationModeActions
     {
         private @PlayerInput m_Wrapper;
@@ -739,6 +772,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Inventory => m_Wrapper.m_ExplorationMode_Inventory;
         public InputAction @SwitchTarget => m_Wrapper.m_ExplorationMode_SwitchTarget;
         public InputAction @LockOn => m_Wrapper.m_ExplorationMode_LockOn;
+        public InputAction @Pause => m_Wrapper.m_ExplorationMode_Pause;
         public InputActionMap Get() { return m_Wrapper.m_ExplorationMode; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -784,6 +818,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LockOn.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
+                @Pause.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_ExplorationModeActionsCallbackInterface = instance;
             if (instance != null)
@@ -824,6 +861,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -917,6 +957,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnSwitchTarget(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IBuildModeActions
     {

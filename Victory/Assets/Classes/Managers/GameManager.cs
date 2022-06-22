@@ -12,6 +12,14 @@ public class GameManager : MonoBehaviour
     public static InventoryInterface inventoryInterface;
     public static DialogueManager dialogueManager;
 
+    [SerializeField]
+    private GameObject playerHud;
+
+    [SerializeField]
+    private GameObject pauseMenu;
+
+    private bool _gamePaused;
+
     private void Awake()
     {
         projectileManager = this.GetComponent<ProjectileManager>();
@@ -51,5 +59,30 @@ public class GameManager : MonoBehaviour
         ProjectileManager.daggerProjectileList.Clear();
         PlayerController.disablePlayer = false;
         PlayerController.nearbyEnemyList.Clear();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PauseGame()
+    {
+        if(!_gamePaused)
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            playerHud.SetActive(false);
+            PlayerController.disablePlayer = true;
+            _gamePaused = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseMenu.SetActive(false);
+            playerHud.SetActive(true);
+            PlayerController.disablePlayer = false;
+            _gamePaused = false;
+        }
     }
 }

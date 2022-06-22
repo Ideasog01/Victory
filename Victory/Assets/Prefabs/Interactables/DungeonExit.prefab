@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d616785b0fbb7478a4aa0d0a7ac717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitSceneIndex: 0
+  exitSceneIndex: 1
 --- !u!1 &4042012009817731461
 GameObject:
   m_ObjectHideFlags: 0

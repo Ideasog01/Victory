@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2324197178515439977dbf7ac69a1c, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  inventoryItems:
-  - {fileID: 11400000, guid: aaea617fb3f45ae47ab33ff8aa155b31, type: 2}
-  - {fileID: 11400000, guid: aaea617fb3f45ae47ab33ff8aa155b31, type: 2}
-  inventoryAmounts: 3c00000050000000
+  inventoryItems: []
+  inventoryAmounts: 
   maxItemAmount: 25
   currentSceneIndex: 0
   positionOnExit: {x: 0, y: 0, z: 0}
   playerLevel: 1
   playerMaxExperience: 100
-  playerExperience: 80
+  playerExperience: 0

@@ -87,7 +87,7 @@ public class ArcherController : PlayerController
         if (_dashTimer > 0)
         {
             _dashTimer -= Time.deltaTime * 1;
-            PlayerRigidBody.AddForce(this.transform.forward * dashSpeed * Time.fixedDeltaTime);
+            PlayerCharacterController.Move(new Vector3(movementInput.y, 0, -movementInput.x) * Time.deltaTime * dashSpeed);
         }
     }
 

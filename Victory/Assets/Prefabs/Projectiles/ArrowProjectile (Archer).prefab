@@ -52,7 +52,7 @@ MonoBehaviour:
   _projectileTarget: {fileID: 0}
   projectileRotationSpeed: {x: 25, y: 0, z: 0}
   collisionTag: Player
-  projectileDamage: 25
+  projectileDamage: 45
   projectileDuration: 6
   rotateMesh: 0
   _isActive: 1
