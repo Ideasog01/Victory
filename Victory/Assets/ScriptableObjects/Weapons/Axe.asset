@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3b63a393772bf4da779bc99f399939, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  weaponName: Axe
+  weaponDamage: 45
+  weaponColliderSize: {x: 0.2, y: 0.5, z: 0.75}
+  weaponColliderOffset: {x: 0, y: 1, z: 0}
+  weaponAttackCooldown: 2
+  maxWeaponCharge: 0
+  weaponChargeRate: 0
+  weaponMesh: {fileID: -2372584552947546636, guid: 439a532aec13bc04e85ea9ffb8759869,
+    type: 3}
+  weaponMaterial: {fileID: 2100000, guid: 8dc0e2b07e28ab44cbb8486fe8f9ec6a, type: 2}
+  weaponScale: {x: 2.5, y: 2.5, z: 2.5}
+  weaponOffset: {x: 1, y: 0, z: 0}
+  weaponIcon: {fileID: 21300000, guid: b11f9c52da2945740b5078d84177a9ab, type: 3}
+  isMelee: 1
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}

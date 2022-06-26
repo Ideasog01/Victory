@@ -20,4 +20,8 @@ public class PlayerData : ScriptableObject
     public int playerMaxExperience;
 
     public int playerExperience;
+
+    public DifficultyLevel difficultyLevel;
+
+    public enum DifficultyLevel { Champion, Hero, Legend };
 }

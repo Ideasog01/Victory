@@ -58,7 +58,8 @@ public class SkeletonKnight : EnemyController
         {
             if(_attackTimer <= 0)
             {
-                EnemyAnimator.SetTrigger("attack");
+                this.GetComponent<Animator>().SetTrigger("attack");
+                swordWeapon.IsWeaponActive = true;
                 _attackTimer = attackCooldown;
             }
             else

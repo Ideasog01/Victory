@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static InventoryInterface inventoryInterface;
     public static DialogueManager dialogueManager;
 
+    public static SpawnManager spawnManager;
+
     [SerializeField]
     private GameObject playerHud;
 
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
         playerInterface = this.GetComponent<PlayerInterface>();
         inventoryInterface = this.GetComponent<InventoryInterface>();
         dialogueManager = this.GetComponent<DialogueManager>();
+        spawnManager = this.GetComponent<SpawnManager>();
 
         playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
 
@@ -53,10 +56,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        ProjectileManager.arrowExplosiveProjectileList.Clear();
-        ProjectileManager.arrowPoisonProjectileList.Clear();
-        ProjectileManager.arrowProjectileList.Clear();
-        ProjectileManager.daggerProjectileList.Clear();
         PlayerController.disablePlayer = false;
         PlayerController.nearbyEnemyList.Clear();
     }

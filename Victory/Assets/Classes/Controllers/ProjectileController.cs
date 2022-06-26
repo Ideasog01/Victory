@@ -8,7 +8,7 @@ public class ProjectileController : MonoBehaviour
     private StatusEffect statusEffect;
 
     [SerializeField]
-    private Vector3 projectileMovementSpeed;
+    private float projectileMovementSpeed;
 
     [SerializeField]
     private Transform _projectileTarget;
@@ -33,7 +33,7 @@ public class ProjectileController : MonoBehaviour
 
     private float _projectileTimer;
 
-    public Vector3 ProjectileMovementSpeed
+    public float ProjectileMovementSpeed
     {
         set { projectileMovementSpeed = value; }
         get { return projectileMovementSpeed; }
@@ -86,12 +86,12 @@ public class ProjectileController : MonoBehaviour
 
     private void ForwardMovement()
     {
-        this.transform.position += this.transform.TransformDirection(Vector3.forward * projectileMovementSpeed.x * Time.deltaTime);
+        this.transform.position += this.transform.TransformDirection(Vector3.forward * projectileMovementSpeed * Time.deltaTime);
     }
 
     private void TargetMovement()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, _projectileTarget.position, Time.deltaTime * projectileMovementSpeed.x);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, _projectileTarget.position, Time.deltaTime * projectileMovementSpeed);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -42,7 +42,7 @@ public class InventoryInterface : MonoBehaviour
 
     private void Awake()
     {
-        _playerData = GameManager.playerController.playerData;
+        _playerData = GameObject.Find("GlobalManager").GetComponent<GlobalManager>().playerData;
         removeItemSlider.onValueChanged.AddListener(delegate { RemoveItemSliderChange(); });
     }
 
@@ -78,7 +78,7 @@ public class InventoryInterface : MonoBehaviour
             inventoryInterface.SetActive(true);
             playerHud.SetActive(false);
 
-            List<Item> itemList = GameManager.playerController.playerData.inventoryItems;
+            List<Item> itemList = _playerData.inventoryItems;
 
             foreach (InventorySlot slot in inventorySlots)
             {
@@ -122,13 +122,13 @@ public class InventoryInterface : MonoBehaviour
             }
         }
 
-        if(index < GameManager.playerController.playerData.inventoryAmounts.Count)
+        if(index < _playerData.inventoryAmounts.Count)
         {
             if (slotFound)
             {
                 inventoryInfoPanel.SetActive(true);
                 inventoryInfoPanel.transform.position = slot.transform.position + new Vector3(0, -30, 0);
-                inventoryInfoText.text = slot.InventoryItem.itemDisplayName + " X" + GameManager.playerController.playerData.inventoryAmounts[index].ToString();
+                inventoryInfoText.text = slot.InventoryItem.itemDisplayName + " X" + _playerData.inventoryAmounts[index].ToString();
             }
         }
     }

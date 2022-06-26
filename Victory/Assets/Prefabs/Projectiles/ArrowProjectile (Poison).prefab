@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffect: {fileID: 9025439071739080014, guid: ee9326c6e11cc5e4d8af66ad225d61d8,
     type: 3}
-  projectileMovementSpeed: {x: 7, y: 0, z: 0}
+  projectileMovementSpeed: {x: 34, y: 0, z: 0}
   _projectileTarget: {fileID: 0}
   projectileRotationSpeed: {x: 35, y: 0, z: 0}
   collisionTag: Enemy

@@ -26,6 +26,8 @@ public class PlayerInterface : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI playerLevelText;
 
+    [Header("Abilities Display")]
+
     [SerializeField]
     private TextMeshProUGUI ability1CooldownText;
 
@@ -33,10 +35,16 @@ public class PlayerInterface : MonoBehaviour
     private TextMeshProUGUI ability2CooldownText;
 
     [SerializeField]
-    private TextMeshProUGUI primaryAbilityCooldownText;
+    private Image ability1Icon;
 
     [SerializeField]
-    private TextMeshProUGUI secondaryAbilityCooldownText;
+    private Image ability2Icon;
+
+    [SerializeField]
+    private Image primaryIcon; 
+
+    [SerializeField]
+    private Image secondaryIcon;
 
     [Header("Respawn Screen")]
 
@@ -61,10 +69,6 @@ public class PlayerInterface : MonoBehaviour
 
     private Ability _ability2;
 
-    private Ability _primaryAbility;
-
-    private Ability _secondaryAbility;
-
     private int _targetXp;
 
     [Header("Interact Prompt")]
@@ -75,12 +79,34 @@ public class PlayerInterface : MonoBehaviour
     [SerializeField]
     private GameObject keyboardInteractPrompt;
 
+    private PlayerData _playerData;
+
+    public Image Ability1Icon
+    {
+        get { return ability1Icon; }
+    }
+
+    public Image Ability2Icon
+    {
+        get { return ability2Icon; }
+    }
+
+    public Image PrimaryIcon
+    {
+        get { return primaryIcon; }
+    }
+
+    public Image SecondaryIcon
+    {
+        get { return secondaryIcon; }
+    }
+
     private void Awake()
     {
         _ability1 = GameManager.playerController.Ab1;
         _ability2 = GameManager.playerController.Ab2;
-        _primaryAbility = GameManager.playerController.PrimaryAbility;
-        _secondaryAbility = GameManager.playerController.SecondaryAbility;
+
+        _playerData = GameObject.Find("GlobalManager").GetComponent<GlobalManager>().playerData;
 
         foreach (Image image in respawnImages)
         {
@@ -121,15 +147,14 @@ public class PlayerInterface : MonoBehaviour
 
     public void DisplayXP()
     {
-        playerExperienceSlider.maxValue = GameManager.playerController.playerData.playerMaxExperience;
-        _targetXp = GameManager.playerController.playerData.playerExperience;
-        playerLevelText.text = GameManager.playerController.playerData.playerLevel.ToString();
+        playerExperienceSlider.maxValue = _playerData.playerMaxExperience;
+        _targetXp = _playerData.playerExperience;
+        playerLevelText.text = _playerData.playerLevel.ToString();
     }
 
 
-    public void DisplayArrowCharge(float chargeValue)
+    public void DisplayArrowCharge(float chargeValue, float maxValue)
     {
-        arrowChargeSlider.maxValue = GameManager.playerController.GetComponent<ArcherController>().MaxArrowCharge;
         arrowChargeSlider.value = chargeValue;
     }
 
@@ -176,24 +201,6 @@ public class PlayerInterface : MonoBehaviour
         {
             ability2CooldownText.text = "";
         }
-
-        if (_primaryAbility.abilityCooldown > 0)
-        {
-            primaryAbilityCooldownText.text = _primaryAbility.abilityCooldown.ToString("F0");
-        }
-        else
-        {
-            primaryAbilityCooldownText.text = "";
-        }
-
-        if (_secondaryAbility.abilityCooldown > 0)
-        {
-            secondaryAbilityCooldownText.text = _secondaryAbility.abilityCooldown.ToString("F0");
-        }
-        else
-        {
-            secondaryAbilityCooldownText.text = "";
-        }
     }
 
     private void Update()
@@ -212,10 +219,9 @@ public class PlayerInterface : MonoBehaviour
 
         if(playerExperienceSlider.value >= playerExperienceSlider.maxValue)
         {
-            PlayerData playerData = GameManager.playerController.playerData;
-            playerData.playerLevel++;
-            playerData.playerExperience = 0;
-            playerData.playerMaxExperience += 200;
+            _playerData.playerLevel++;
+            _playerData.playerExperience = 0;
+            _playerData.playerMaxExperience += 200;
             _targetXp = 0;
             playerExperienceSlider.minValue = 0;
             playerExperienceSlider.value = 0;

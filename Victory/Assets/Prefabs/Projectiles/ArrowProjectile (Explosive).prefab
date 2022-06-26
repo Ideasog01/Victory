@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee2977ad7c8b0d438f512618a0f646c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileMovementSpeed: {x: 7, y: 0, z: 0}
+  statusEffect: {fileID: 0}
+  projectileMovementSpeed: {x: 34, y: 0, z: 0}
   _projectileTarget: {fileID: 0}
   projectileRotationSpeed: {x: 35, y: 0, z: 0}
   collisionTag: Enemy
@@ -55,7 +56,6 @@ MonoBehaviour:
   projectileDuration: 6
   rotateMesh: 0
   _isActive: 1
-  projectileHitEffect: 1
 --- !u!54 &5869366752235466505
 Rigidbody:
   m_ObjectHideFlags: 0

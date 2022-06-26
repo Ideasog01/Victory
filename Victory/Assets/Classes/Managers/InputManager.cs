@@ -49,7 +49,6 @@ public class InputManager : MonoBehaviour
 
     private void InitialiseExplorationInput()
     {
-        _playerInput.ExplorationMode.Primary.performed += ctx => _playerController.Primary();
         _playerInput.ExplorationMode.Secondary.performed += ctx => _playerController.Secondary();
 
         _playerInput.ExplorationMode.Pause.performed += ctx => _gameManager.PauseGame();

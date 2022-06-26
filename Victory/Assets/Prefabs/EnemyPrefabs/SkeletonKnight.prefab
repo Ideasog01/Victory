@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamageAmount: 20
+  compareTag: Player
 --- !u!65 &3632438851301137424
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     public static Interactable nearbyInteractable;
     public static List<EnemyController> nearbyEnemyList = new List<EnemyController>();
     public static EnemyController currentTarget;
+    public static Weapon playerWeapon;
 
-    public PlayerData playerData;
+    public static SpecialItem playerSpecialItem;
 
     public enum Class { Archer, Knight, HolyWarrior };
 
@@ -41,6 +42,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject targetIndicator;
 
+    [SerializeField]
+    private Transform equipedWeapon;
+
+    [SerializeField]
+    private WeaponController weaponController;
+
     [Header("Ability Settings")]
 
     [SerializeField]
@@ -54,12 +61,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Ability ability2;
-
-    [SerializeField]
-    private Ability primaryAbility;
-
-    [SerializeField]
-    private Ability secondaryAbility;
 
     private float _specialCharge;
 
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private int _targetIndex;
     private float _targetSwitchBuffer;
+    private PlayerData _playerData;
 
     public CharacterController PlayerCharacterController
     {
@@ -104,16 +106,6 @@ public class PlayerController : MonoBehaviour
         get { return ability2; }
     }
 
-    public Ability PrimaryAbility
-    {
-        get { return primaryAbility; }
-    }
-
-    public Ability SecondaryAbility
-    {
-        get { return secondaryAbility; }
-    }
-
     #endregion
 
     #region Core
@@ -124,14 +116,13 @@ public class PlayerController : MonoBehaviour
         _playerCharacterController = this.GetComponent<CharacterController>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        _playerData = GameObject.Find("GlobalManager").GetComponent<GlobalManager>().playerData;
+
         if (playerClass == Class.Archer)
         {
             _archerController = this.GetComponent<ArcherController>();
-            _archerController.InitialiseArcher();
         }
 
-        primaryAbility.RefreshAbility();
-        secondaryAbility.RefreshAbility();
         ability1.RefreshAbility();
         ability2.RefreshAbility();
     }
@@ -147,16 +138,16 @@ public class PlayerController : MonoBehaviour
     {
         SpecialAbilityCharge();
 
-        if(playerClass == Class.Archer)
-        {
-            _archerController.UpdateArcher();
-        }
-
         FaceDirection();
 
         UpdateAbilityCooldowns();
 
         FindTargets();
+
+        if(playerClass == Class.Archer)
+        {
+            _archerController.UpdateArcher();
+        }
 
         if(currentTarget != null)
         {
@@ -189,9 +180,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        _playerHealth += amount;
+        GameManager.playerInterface.DisplayPlayerHealth();
+
+        if(_playerHealth > playerMaxHealth)
+        {
+            _playerHealth = playerMaxHealth;
+        }
+        
+    }
+
     public void AddExperience(int amount)
     {
-        playerData.playerExperience += amount;
+        _playerData.playerExperience += amount;
 
         GameManager.playerInterface.DisplayXP();
     }
@@ -215,38 +218,38 @@ public class PlayerController : MonoBehaviour
         bool itemFound = false;
         int extraAmount = 0;
 
-        foreach(Item inventoryItem in playerData.inventoryItems)
+        foreach(Item inventoryItem in _playerData.inventoryItems)
         {
             if(inventoryItem == item)
             {
-                int currentAmount = playerData.inventoryAmounts[playerData.inventoryItems.IndexOf(inventoryItem)];
+                int currentAmount = _playerData.inventoryAmounts[_playerData.inventoryItems.IndexOf(inventoryItem)];
                 
                 if(currentAmount + amount < item.maxItemAmount)
                 {
-                    playerData.inventoryAmounts[playerData.inventoryItems.IndexOf(inventoryItem)] = currentAmount + amount;
+                    _playerData.inventoryAmounts[_playerData.inventoryItems.IndexOf(inventoryItem)] = currentAmount + amount;
                     itemFound = true;
                 }
                 else
                 {
                     extraAmount = amount - item.maxItemAmount;
-                    playerData.inventoryAmounts[playerData.inventoryItems.IndexOf(inventoryItem)] = item.maxItemAmount;
+                    _playerData.inventoryAmounts[_playerData.inventoryItems.IndexOf(inventoryItem)] = item.maxItemAmount;
                 }
             }
         }
 
         if(!itemFound)
         {
-            if(playerData.inventoryItems.Count + 1 < playerData.maxItemAmount)
+            if(_playerData.inventoryItems.Count + 1 < _playerData.maxItemAmount)
             {
-                playerData.inventoryItems.Add(item);
+                _playerData.inventoryItems.Add(item);
 
                 if(extraAmount == 0)
                 {
-                    playerData.inventoryAmounts.Add(amount);
+                    _playerData.inventoryAmounts.Add(amount);
                 }
                 else
                 {
-                    playerData.inventoryAmounts.Add(extraAmount);
+                    _playerData.inventoryAmounts.Add(extraAmount);
                 }
             }
         }
@@ -256,24 +259,24 @@ public class PlayerController : MonoBehaviour
     {
         int extraAmount = 0;
 
-        for(int i = 0; i < playerData.inventoryItems.Count; i++)
+        for(int i = 0; i < _playerData.inventoryItems.Count; i++)
         {
-            if (playerData.inventoryItems[i] == item)
+            if (_playerData.inventoryItems[i] == item)
             {
-                if(amount == playerData.inventoryAmounts[i])
+                if(amount == _playerData.inventoryAmounts[i])
                 {
-                    playerData.inventoryItems.RemoveAt(i);
-                    playerData.inventoryAmounts.RemoveAt(i);
+                    _playerData.inventoryItems.RemoveAt(i);
+                    _playerData.inventoryAmounts.RemoveAt(i);
                 }
-                else if(amount > playerData.inventoryAmounts[i])
+                else if(amount > _playerData.inventoryAmounts[i])
                 {
-                    extraAmount = amount - playerData.inventoryAmounts[i];
-                    playerData.inventoryItems.RemoveAt(i);
-                    playerData.inventoryAmounts.RemoveAt(i);
+                    extraAmount = amount - _playerData.inventoryAmounts[i];
+                    _playerData.inventoryItems.RemoveAt(i);
+                    _playerData.inventoryAmounts.RemoveAt(i);
                 }
                 else
                 {
-                    playerData.inventoryAmounts[i] -= amount;
+                    _playerData.inventoryAmounts[i] -= amount;
                 }
             }
         }
@@ -284,40 +287,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetWeapon(Weapon weapon)
+    {
+        //Drop Previous Weapon
+
+        if(playerWeapon != null)
+        {
+            GameManager.spawnManager.SpawnWeaponDrop(playerWeapon, this.transform.position);
+        }
+        
+        //Set Weapon
+        equipedWeapon.gameObject.SetActive(true);
+        weaponController.AssignedWeapon = weapon;
+        playerWeapon = weapon;
+        equipedWeapon.GetChild(0).GetComponent<MeshFilter>().mesh = weapon.weaponMesh;
+        equipedWeapon.GetChild(0).GetComponent<MeshRenderer>().material = weapon.weaponMaterial;
+        equipedWeapon.GetChild(0).localPosition = weapon.weaponOffset;
+        equipedWeapon.GetChild(0).transform.localScale = weapon.weaponScale;
+        equipedWeapon.GetComponent<BoxCollider>().size = weapon.weaponColliderSize;
+        equipedWeapon.GetComponent<BoxCollider>().center = weapon.weaponColliderOffset;
+
+        //Change Primary Icon Display
+        GameManager.playerInterface.PrimaryIcon.sprite = weapon.weaponIcon;
+    }
+
     #endregion
 
     #region Interaction
-
-    public void Primary()
-    {
-        if(!disablePlayer)
-        {
-            if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
-            {
-
-            }
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(_gameCamera.ScreenPointToRay(mousePosition), out hit))
-            {
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    playerTarget = hit.transform;
-                }
-            }
-        }
-    }
 
     public void PrimaryActivate()
     {
         if(!disablePlayer)
         {
-            if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+            if(playerWeapon != null)
             {
-                if (playerClass == Class.Archer)
+                if (playerWeapon.weaponName == "Bow")
                 {
-                    _archerController.ChargingArrow = true;
+                    weaponController.WeaponCharging = true;
                 }
             }
         }
@@ -327,12 +333,16 @@ public class PlayerController : MonoBehaviour
     {
         if(!disablePlayer)
         {
-            if (primaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+            if(playerWeapon != null)
             {
-                if (playerClass == Class.Archer)
+                if (playerWeapon.weaponName == "Bow")
                 {
-                    _archerController.ReleaseArrow();
-                    _archerController.ChargingArrow = false;
+                    weaponController.ChargeRelease();
+                }
+
+                if(playerWeapon.isMelee)
+                {
+                    weaponController.Attack();
                 }
             }
         }
@@ -342,13 +352,10 @@ public class PlayerController : MonoBehaviour
     {
         if(!disablePlayer)
         {
-            if (secondaryAbility.abilityStatus == Ability.AbilityStatus.Available)
+            if(playerSpecialItem != null)
             {
-                if (playerClass == Class.Archer)
-                {
-                    _archerController.SpawnDaggerProjectile();
-                    secondaryAbility.UseAbility();
-                }
+                Instantiate(playerSpecialItem.itemPrefab, this.transform.position, Quaternion.identity);
+                playerSpecialItem = null;
             }
         }
     }
@@ -361,8 +368,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerClass == Class.Archer)
                 {
-                    this.GetComponent<ArcherController>().ExplosiveShotActive = true;
-                }
+
+                }       
             }
         }
     }
@@ -376,7 +383,7 @@ public class PlayerController : MonoBehaviour
                 if (playerClass == Class.Archer)
                 {
                     this.GetComponent<ArcherController>().ActivateDash();
-                    ability1.UseAbility();
+                    ability2.UseAbility();
                 }
             }
         }
@@ -390,7 +397,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerClass == Class.Archer)
                 {
-                    _archerController.SuperiorReflex = 3;
                     _specialCharge = 0;
                 }
             }
@@ -399,7 +405,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerClass == Class.Archer)
                 {
-                    _archerController.PoisonShotActive = true;
                     _specialCharge = 0;
                 }
             }
@@ -438,16 +443,6 @@ public class PlayerController : MonoBehaviour
         if (ability2.abilityCooldown > 0 && !ability2.cooldownActive)
         {
             StartCoroutine(UpdateAbilityCooldowns(ability2));
-        }
-
-        if(primaryAbility.abilityCooldown > 0 && !primaryAbility.cooldownActive)
-        {
-            StartCoroutine(UpdateAbilityCooldowns(primaryAbility));
-        }
-
-        if (secondaryAbility.abilityCooldown > 0 && !secondaryAbility.cooldownActive)
-        {
-            StartCoroutine(UpdateAbilityCooldowns(secondaryAbility));
         }
     }
 
