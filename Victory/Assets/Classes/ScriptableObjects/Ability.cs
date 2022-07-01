@@ -7,11 +7,36 @@ public class Ability : ScriptableObject
 
     public float abilityCooldown;
 
+    public float activeTime;
+
+    public float activeTimer;
+
     public enum AbilityStatus { Available, Active, Disabled, OnCooldown };
 
     public AbilityStatus abilityStatus;
 
     public bool cooldownActive;
+
+    public bool activeTimerActive;
+
+    public bool isSpecial;
+
+    public Sprite abilityIcon;
+
+    public Enhancement[] equipedEnhancements;
+
+    public Enhancement[] abilityEnhancements;
+
+    public string abilityName;
+
+    [TextArea(10, 5)]
+    public string abilityDescription;
+
+    public void ActivateAbility()
+    {
+        abilityStatus = AbilityStatus.Active;
+        activeTimer = activeTime;
+    }
 
     public void UseAbility()
     {
@@ -22,10 +47,13 @@ public class Ability : ScriptableObject
 
     public void RefreshAbility()
     {
-        if(abilityStatus != AbilityStatus.Disabled && abilityStatus != AbilityStatus.Active)
+        if(abilityStatus != AbilityStatus.Disabled)
         {
             abilityCooldown = 0;
             abilityStatus = AbilityStatus.Available;
+            activeTimer = 0;
+            activeTimerActive = false;
+            cooldownActive = false;
         }
     }
 }

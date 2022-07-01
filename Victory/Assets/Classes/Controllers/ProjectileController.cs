@@ -45,6 +45,11 @@ public class ProjectileController : MonoBehaviour
         get { return projectileDamage; }
     }
 
+    public Transform ProjectileTarget
+    {
+        set { _projectileTarget = value; }
+    }
+
     public void InitialiseProjectile()
     {
         _projectileTimer = projectileDuration;
@@ -55,7 +60,7 @@ public class ProjectileController : MonoBehaviour
     {
         if(_isActive)
         {
-            if (_projectileTarget != null)
+            if(_projectileTarget != null)
             {
                 TargetMovement();
             }
@@ -80,7 +85,7 @@ public class ProjectileController : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 
@@ -109,18 +114,18 @@ public class ProjectileController : MonoBehaviour
                         other.GetComponent<EnemyController>().AddEffect(statusEffect);
                     }
 
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 }
 
                 if(collisionTag == "Player")
                 {
                     other.GetComponent<PlayerController>().TakeDamage(projectileDamage);
 
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 }
             }
 
-            if(!other.CompareTag("Player"))
+            if(other.CompareTag("Ground"))
             {
                 _isActive = false;
             }

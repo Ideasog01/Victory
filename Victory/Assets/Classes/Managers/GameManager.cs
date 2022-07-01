@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static PlayerInterface playerInterface;
     public static InventoryInterface inventoryInterface;
     public static DialogueManager dialogueManager;
+    public static AudioManager audioManager;
 
     public static SpawnManager spawnManager;
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         dialogueManager = this.GetComponent<DialogueManager>();
         spawnManager = this.GetComponent<SpawnManager>();
 
+        audioManager = GameObject.Find("GlobalManager").GetComponent<AudioManager>();
         playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
 
         SceneManager.sceneLoaded += OnSceneLoad;

@@ -34,7 +34,10 @@ public class SkeletonKnight : EnemyController
     {
         if(EnemyState == AIState.Chase)
         {
-            SetEnemyDestination(Player.transform.position);
+            if(EnemyNavMeshAgent.isActiveAndEnabled)
+            {
+                SetEnemyDestination(Player.transform.position);
+            }
         }
         else if(EnemyState == AIState.Idle)
         {

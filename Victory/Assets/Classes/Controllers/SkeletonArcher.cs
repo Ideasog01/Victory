@@ -14,8 +14,6 @@ public class SkeletonArcher : EnemyController
 
     private Transform _arrowSpawn;
 
-    private List<ProjectileController> _projectilePrefabList = new List<ProjectileController>();
-
     private void Start()
     {
         _arrowSpawn = this.transform.GetChild(2);
@@ -67,25 +65,7 @@ public class SkeletonArcher : EnemyController
 
     public void SpawnArcherArrow()
     {
-        bool projectileFound = false;
-
-        foreach(ProjectileController projectile in _projectilePrefabList)
-        {
-            if(!projectile.isActiveAndEnabled)
-            {
-                projectile.gameObject.SetActive(true);
-                projectile.transform.position = _arrowSpawn.position;
-                projectile.transform.localEulerAngles = this.transform.localEulerAngles;
-                projectile.InitialiseProjectile();
-                projectileFound = true;
-                break;
-            }
-        }
-
-        if(!projectileFound)
-        {
-            ProjectileController projectileController = Instantiate(arrowPrefab.GetComponent<ProjectileController>(), _arrowSpawn.position, Quaternion.identity);
-            _projectilePrefabList.Add(projectileController);
-        }
+        ProjectileController projectileController = Instantiate(arrowPrefab.GetComponent<ProjectileController>(), _arrowSpawn.position, this.transform.rotation);
+        projectileController.InitialiseProjectile();
     }
 }

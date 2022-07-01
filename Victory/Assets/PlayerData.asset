@@ -20,3 +20,7 @@ MonoBehaviour:
   playerLevel: 1
   playerMaxExperience: 100
   playerExperience: 0
+  difficultyLevel: 0
+  voidServantIcon: {fileID: 21300000, guid: cdec13907ffc75749ab2ed436bec6b14, type: 3}
+  voidServantDescription: This is the void servant description. Here, details of
+    the class are outlined including backstory and abilities.

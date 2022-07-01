@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    public static List<GameObject> projectileList = new List<GameObject>();
-
     public void SpawnProjectile(Transform prefab, Vector3 position, Vector3 rotation, float movementSpeed, int damageAmount)
     {
         ProjectileController projectile = Instantiate(prefab.GetComponent<ProjectileController>(), position, Quaternion.identity);

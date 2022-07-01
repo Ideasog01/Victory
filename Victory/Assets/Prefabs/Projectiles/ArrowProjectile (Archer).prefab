@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusEffect: {fileID: 0}
-  projectileMovementSpeed: {x: 17.72, y: 0, z: 0}
+  projectileMovementSpeed: 10
   _projectileTarget: {fileID: 0}
   projectileRotationSpeed: {x: 25, y: 0, z: 0}
   collisionTag: Player
-  projectileDamage: 45
+  projectileDamage: 25
   projectileDuration: 6
   rotateMesh: 0
   _isActive: 1

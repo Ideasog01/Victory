@@ -24,7 +24,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""ExplorationMode"",
+            ""name"": ""Gameplay"",
             ""id"": ""8d5c92b1-26be-425e-b2f4-8f72d51ff4e8"",
             ""actions"": [
                 {
@@ -100,6 +100,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Ability3"",
+                    ""type"": ""Button"",
+                    ""id"": ""26a32d25-2427-4e76-9234-dd4a602e89f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability4"",
+                    ""type"": ""Button"",
+                    ""id"": ""4caf4d0d-a6f3-4cc2-b8da-1386d9de442e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SpecialAbility"",
                     ""type"": ""Button"",
                     ""id"": ""66253118-6f3f-44eb-b80c-fbfb47176bf7"",
@@ -112,24 +130,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""name"": ""Inventory"",
                     ""type"": ""Button"",
                     ""id"": ""be9db590-e88d-4266-871e-981773c12a2d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchTarget"",
-                    ""type"": ""Button"",
-                    ""id"": ""f148f3f8-bcb1-4426-a265-1a85f41c3ce0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LockOn"",
-                    ""type"": ""Button"",
-                    ""id"": ""1d00a909-24fa-4f53-a75f-d04d9f41bc63"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -203,33 +203,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""641505e6-829f-4ffe-b0bd-cc54eb4d1bed"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MovementInput"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5a15be65-6ae0-4f64-bab9-aaae4d304976"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""000dfcbc-ee82-4d13-bcad-c6ab1518736b"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -247,33 +225,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""736c0188-2dbd-4795-a2a3-56196b12bae2"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Primary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""060d550b-8b01-496f-ad5e-8b28a80f1545"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Secondary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b5883f0d-190d-453e-9b93-8859ffb96f8f"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
                     ""action"": ""Secondary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -302,33 +258,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1021898c-768b-4ab3-927f-5cd0251799cd"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""554c5eed-6f94-4d4e-aa25-478585b4a6c2"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Ability1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""718d990d-76af-4949-92ee-f0f01d082f8d"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
                     ""action"": ""Ability1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -336,21 +270,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a83c37a8-c3c5-4319-a359-d0512d0d4750"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Ability2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be943f7d-691e-4094-9c76-e805a3f878c4"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
                     ""action"": ""Ability2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -358,21 +281,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""507b1b0f-fa0f-412c-b71b-60921fa87805"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SpecialAbility"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5a75081c-5780-40a8-878b-b814aa2d1ebd"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
                     ""action"": ""SpecialAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -390,61 +302,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b154496b-b783-41fe-9e32-7deb9af73aea"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c30fc720-fdb4-435d-ac42-fc966d0b0d26"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SwitchTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""22746921-07ea-4697-bf8e-b20a69a886f1"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""SwitchTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""279d6e4a-5551-4238-91fb-f362270452ca"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""LockOn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""15de54dd-c3e2-400c-9c18-e577deddbf70"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""LockOn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c4b24d65-3b22-402d-8e6f-94bcabb4a008"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -456,177 +313,23 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1febe076-255f-4cb6-a690-abb1f1917739"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""BuildMode"",
-            ""id"": ""02e83f62-d882-42b9-8d2b-2b190165b5a3"",
-            ""actions"": [
-                {
-                    ""name"": ""MovementInput"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""5fd526ba-61d6-4da1-b4b6-960aa7f203ea"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MousePosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""bc36b9b1-e2bd-4e7b-b9c4-ae096465e2f0"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Secondary"",
-                    ""type"": ""Button"",
-                    ""id"": ""bfa3fe6d-8476-4457-bfa1-1fab01f4eb2f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Primary"",
-                    ""type"": ""Button"",
-                    ""id"": ""86140643-8db8-4656-ad82-8e3e05465a31"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""a1935b03-01da-4b01-a2af-0b648dec4881"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovementInput"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""fcc53d6a-03d0-47b7-9e05-ec8f6489afa0"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""id"": ""2f7f91cd-c981-466a-81a9-2fd26b2fdde1"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MovementInput"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""dd37daeb-e459-4a96-95df-5ff7951eeb03"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MovementInput"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""43babf05-42cc-408a-9a2e-125ab2e0c675"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MovementInput"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""e36fd7fe-157d-42d7-a64c-13adcc9262da"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MovementInput"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e0750e74-199d-4378-88ec-901ec2111424"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MovementInput"",
+                    ""action"": ""Ability3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8f7adf5b-f5fe-40f5-a346-c34af6692da8"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""c447a1b2-a8f9-45d4-b129-2365b37b1e97"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Primary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""53fc0c5b-d730-4f71-bb2f-b62550aa3f50"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Primary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""478b4a20-dafb-4bd5-aca6-428f92389190"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Secondary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""810ac8df-ab3b-40ae-bf05-65b5de94121e"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Secondary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""19961cea-c47e-4e99-9fbe-75145866a2b7"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MousePosition"",
+                    ""action"": ""Ability4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -663,27 +366,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // ExplorationMode
-        m_ExplorationMode = asset.FindActionMap("ExplorationMode", throwIfNotFound: true);
-        m_ExplorationMode_MovementInput = m_ExplorationMode.FindAction("MovementInput", throwIfNotFound: true);
-        m_ExplorationMode_Interact = m_ExplorationMode.FindAction("Interact", throwIfNotFound: true);
-        m_ExplorationMode_Jump = m_ExplorationMode.FindAction("Jump", throwIfNotFound: true);
-        m_ExplorationMode_Primary = m_ExplorationMode.FindAction("Primary", throwIfNotFound: true);
-        m_ExplorationMode_Secondary = m_ExplorationMode.FindAction("Secondary", throwIfNotFound: true);
-        m_ExplorationMode_MousePosition = m_ExplorationMode.FindAction("MousePosition", throwIfNotFound: true);
-        m_ExplorationMode_Ability1 = m_ExplorationMode.FindAction("Ability1", throwIfNotFound: true);
-        m_ExplorationMode_Ability2 = m_ExplorationMode.FindAction("Ability2", throwIfNotFound: true);
-        m_ExplorationMode_SpecialAbility = m_ExplorationMode.FindAction("SpecialAbility", throwIfNotFound: true);
-        m_ExplorationMode_Inventory = m_ExplorationMode.FindAction("Inventory", throwIfNotFound: true);
-        m_ExplorationMode_SwitchTarget = m_ExplorationMode.FindAction("SwitchTarget", throwIfNotFound: true);
-        m_ExplorationMode_LockOn = m_ExplorationMode.FindAction("LockOn", throwIfNotFound: true);
-        m_ExplorationMode_Pause = m_ExplorationMode.FindAction("Pause", throwIfNotFound: true);
-        // BuildMode
-        m_BuildMode = asset.FindActionMap("BuildMode", throwIfNotFound: true);
-        m_BuildMode_MovementInput = m_BuildMode.FindAction("MovementInput", throwIfNotFound: true);
-        m_BuildMode_MousePosition = m_BuildMode.FindAction("MousePosition", throwIfNotFound: true);
-        m_BuildMode_Secondary = m_BuildMode.FindAction("Secondary", throwIfNotFound: true);
-        m_BuildMode_Primary = m_BuildMode.FindAction("Primary", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_MovementInput = m_Gameplay.FindAction("MovementInput", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Primary = m_Gameplay.FindAction("Primary", throwIfNotFound: true);
+        m_Gameplay_Secondary = m_Gameplay.FindAction("Secondary", throwIfNotFound: true);
+        m_Gameplay_MousePosition = m_Gameplay.FindAction("MousePosition", throwIfNotFound: true);
+        m_Gameplay_Ability1 = m_Gameplay.FindAction("Ability1", throwIfNotFound: true);
+        m_Gameplay_Ability2 = m_Gameplay.FindAction("Ability2", throwIfNotFound: true);
+        m_Gameplay_Ability3 = m_Gameplay.FindAction("Ability3", throwIfNotFound: true);
+        m_Gameplay_Ability4 = m_Gameplay.FindAction("Ability4", throwIfNotFound: true);
+        m_Gameplay_SpecialAbility = m_Gameplay.FindAction("SpecialAbility", throwIfNotFound: true);
+        m_Gameplay_Inventory = m_Gameplay.FindAction("Inventory", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -740,89 +437,89 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // ExplorationMode
-    private readonly InputActionMap m_ExplorationMode;
-    private IExplorationModeActions m_ExplorationModeActionsCallbackInterface;
-    private readonly InputAction m_ExplorationMode_MovementInput;
-    private readonly InputAction m_ExplorationMode_Interact;
-    private readonly InputAction m_ExplorationMode_Jump;
-    private readonly InputAction m_ExplorationMode_Primary;
-    private readonly InputAction m_ExplorationMode_Secondary;
-    private readonly InputAction m_ExplorationMode_MousePosition;
-    private readonly InputAction m_ExplorationMode_Ability1;
-    private readonly InputAction m_ExplorationMode_Ability2;
-    private readonly InputAction m_ExplorationMode_SpecialAbility;
-    private readonly InputAction m_ExplorationMode_Inventory;
-    private readonly InputAction m_ExplorationMode_SwitchTarget;
-    private readonly InputAction m_ExplorationMode_LockOn;
-    private readonly InputAction m_ExplorationMode_Pause;
-    public struct ExplorationModeActions
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private IGameplayActions m_GameplayActionsCallbackInterface;
+    private readonly InputAction m_Gameplay_MovementInput;
+    private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Primary;
+    private readonly InputAction m_Gameplay_Secondary;
+    private readonly InputAction m_Gameplay_MousePosition;
+    private readonly InputAction m_Gameplay_Ability1;
+    private readonly InputAction m_Gameplay_Ability2;
+    private readonly InputAction m_Gameplay_Ability3;
+    private readonly InputAction m_Gameplay_Ability4;
+    private readonly InputAction m_Gameplay_SpecialAbility;
+    private readonly InputAction m_Gameplay_Inventory;
+    private readonly InputAction m_Gameplay_Pause;
+    public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
-        public ExplorationModeActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MovementInput => m_Wrapper.m_ExplorationMode_MovementInput;
-        public InputAction @Interact => m_Wrapper.m_ExplorationMode_Interact;
-        public InputAction @Jump => m_Wrapper.m_ExplorationMode_Jump;
-        public InputAction @Primary => m_Wrapper.m_ExplorationMode_Primary;
-        public InputAction @Secondary => m_Wrapper.m_ExplorationMode_Secondary;
-        public InputAction @MousePosition => m_Wrapper.m_ExplorationMode_MousePosition;
-        public InputAction @Ability1 => m_Wrapper.m_ExplorationMode_Ability1;
-        public InputAction @Ability2 => m_Wrapper.m_ExplorationMode_Ability2;
-        public InputAction @SpecialAbility => m_Wrapper.m_ExplorationMode_SpecialAbility;
-        public InputAction @Inventory => m_Wrapper.m_ExplorationMode_Inventory;
-        public InputAction @SwitchTarget => m_Wrapper.m_ExplorationMode_SwitchTarget;
-        public InputAction @LockOn => m_Wrapper.m_ExplorationMode_LockOn;
-        public InputAction @Pause => m_Wrapper.m_ExplorationMode_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_ExplorationMode; }
+        public GameplayActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MovementInput => m_Wrapper.m_Gameplay_MovementInput;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Primary => m_Wrapper.m_Gameplay_Primary;
+        public InputAction @Secondary => m_Wrapper.m_Gameplay_Secondary;
+        public InputAction @MousePosition => m_Wrapper.m_Gameplay_MousePosition;
+        public InputAction @Ability1 => m_Wrapper.m_Gameplay_Ability1;
+        public InputAction @Ability2 => m_Wrapper.m_Gameplay_Ability2;
+        public InputAction @Ability3 => m_Wrapper.m_Gameplay_Ability3;
+        public InputAction @Ability4 => m_Wrapper.m_Gameplay_Ability4;
+        public InputAction @SpecialAbility => m_Wrapper.m_Gameplay_SpecialAbility;
+        public InputAction @Inventory => m_Wrapper.m_Gameplay_Inventory;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ExplorationModeActions set) { return set.Get(); }
-        public void SetCallbacks(IExplorationModeActions instance)
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void SetCallbacks(IGameplayActions instance)
         {
-            if (m_Wrapper.m_ExplorationModeActionsCallbackInterface != null)
+            if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @MovementInput.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnMovementInput;
-                @MovementInput.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnMovementInput;
-                @MovementInput.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnMovementInput;
-                @Interact.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInteract;
-                @Jump.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnJump;
-                @Primary.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPrimary;
-                @Primary.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPrimary;
-                @Primary.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPrimary;
-                @Secondary.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSecondary;
-                @Secondary.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSecondary;
-                @Secondary.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSecondary;
-                @MousePosition.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnMousePosition;
-                @MousePosition.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnMousePosition;
-                @MousePosition.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnMousePosition;
-                @Ability1.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnAbility1;
-                @Ability1.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnAbility1;
-                @Ability1.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnAbility1;
-                @Ability2.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnAbility2;
-                @Ability2.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnAbility2;
-                @Ability2.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnAbility2;
-                @SpecialAbility.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSpecialAbility;
-                @SpecialAbility.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSpecialAbility;
-                @SpecialAbility.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSpecialAbility;
-                @Inventory.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInventory;
-                @Inventory.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInventory;
-                @Inventory.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnInventory;
-                @SwitchTarget.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSwitchTarget;
-                @SwitchTarget.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSwitchTarget;
-                @SwitchTarget.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnSwitchTarget;
-                @LockOn.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
-                @LockOn.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
-                @LockOn.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnLockOn;
-                @Pause.started -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_ExplorationModeActionsCallbackInterface.OnPause;
+                @MovementInput.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovementInput;
+                @MovementInput.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovementInput;
+                @MovementInput.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovementInput;
+                @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Primary.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPrimary;
+                @Primary.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPrimary;
+                @Primary.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPrimary;
+                @Secondary.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSecondary;
+                @Secondary.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSecondary;
+                @Secondary.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSecondary;
+                @MousePosition.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
+                @Ability1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility1;
+                @Ability1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility1;
+                @Ability1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility1;
+                @Ability2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility2;
+                @Ability2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility2;
+                @Ability2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility2;
+                @Ability3.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility3;
+                @Ability3.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility3;
+                @Ability3.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility3;
+                @Ability4.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility4;
+                @Ability4.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility4;
+                @Ability4.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility4;
+                @SpecialAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility;
+                @SpecialAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility;
+                @SpecialAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility;
+                @Inventory.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInventory;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
             }
-            m_Wrapper.m_ExplorationModeActionsCallbackInterface = instance;
+            m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @MovementInput.started += instance.OnMovementInput;
@@ -849,82 +546,25 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Ability2.started += instance.OnAbility2;
                 @Ability2.performed += instance.OnAbility2;
                 @Ability2.canceled += instance.OnAbility2;
+                @Ability3.started += instance.OnAbility3;
+                @Ability3.performed += instance.OnAbility3;
+                @Ability3.canceled += instance.OnAbility3;
+                @Ability4.started += instance.OnAbility4;
+                @Ability4.performed += instance.OnAbility4;
+                @Ability4.canceled += instance.OnAbility4;
                 @SpecialAbility.started += instance.OnSpecialAbility;
                 @SpecialAbility.performed += instance.OnSpecialAbility;
                 @SpecialAbility.canceled += instance.OnSpecialAbility;
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
-                @SwitchTarget.started += instance.OnSwitchTarget;
-                @SwitchTarget.performed += instance.OnSwitchTarget;
-                @SwitchTarget.canceled += instance.OnSwitchTarget;
-                @LockOn.started += instance.OnLockOn;
-                @LockOn.performed += instance.OnLockOn;
-                @LockOn.canceled += instance.OnLockOn;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
             }
         }
     }
-    public ExplorationModeActions @ExplorationMode => new ExplorationModeActions(this);
-
-    // BuildMode
-    private readonly InputActionMap m_BuildMode;
-    private IBuildModeActions m_BuildModeActionsCallbackInterface;
-    private readonly InputAction m_BuildMode_MovementInput;
-    private readonly InputAction m_BuildMode_MousePosition;
-    private readonly InputAction m_BuildMode_Secondary;
-    private readonly InputAction m_BuildMode_Primary;
-    public struct BuildModeActions
-    {
-        private @PlayerInput m_Wrapper;
-        public BuildModeActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MovementInput => m_Wrapper.m_BuildMode_MovementInput;
-        public InputAction @MousePosition => m_Wrapper.m_BuildMode_MousePosition;
-        public InputAction @Secondary => m_Wrapper.m_BuildMode_Secondary;
-        public InputAction @Primary => m_Wrapper.m_BuildMode_Primary;
-        public InputActionMap Get() { return m_Wrapper.m_BuildMode; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BuildModeActions set) { return set.Get(); }
-        public void SetCallbacks(IBuildModeActions instance)
-        {
-            if (m_Wrapper.m_BuildModeActionsCallbackInterface != null)
-            {
-                @MovementInput.started -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnMovementInput;
-                @MovementInput.performed -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnMovementInput;
-                @MovementInput.canceled -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnMovementInput;
-                @MousePosition.started -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnMousePosition;
-                @MousePosition.performed -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnMousePosition;
-                @MousePosition.canceled -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnMousePosition;
-                @Secondary.started -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnSecondary;
-                @Secondary.performed -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnSecondary;
-                @Secondary.canceled -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnSecondary;
-                @Primary.started -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnPrimary;
-                @Primary.performed -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnPrimary;
-                @Primary.canceled -= m_Wrapper.m_BuildModeActionsCallbackInterface.OnPrimary;
-            }
-            m_Wrapper.m_BuildModeActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @MovementInput.started += instance.OnMovementInput;
-                @MovementInput.performed += instance.OnMovementInput;
-                @MovementInput.canceled += instance.OnMovementInput;
-                @MousePosition.started += instance.OnMousePosition;
-                @MousePosition.performed += instance.OnMousePosition;
-                @MousePosition.canceled += instance.OnMousePosition;
-                @Secondary.started += instance.OnSecondary;
-                @Secondary.performed += instance.OnSecondary;
-                @Secondary.canceled += instance.OnSecondary;
-                @Primary.started += instance.OnPrimary;
-                @Primary.performed += instance.OnPrimary;
-                @Primary.canceled += instance.OnPrimary;
-            }
-        }
-    }
-    public BuildModeActions @BuildMode => new BuildModeActions(this);
+    public GameplayActions @Gameplay => new GameplayActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -943,7 +583,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface IExplorationModeActions
+    public interface IGameplayActions
     {
         void OnMovementInput(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
@@ -953,17 +593,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
+        void OnAbility3(InputAction.CallbackContext context);
+        void OnAbility4(InputAction.CallbackContext context);
         void OnSpecialAbility(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
-        void OnSwitchTarget(InputAction.CallbackContext context);
-        void OnLockOn(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-    }
-    public interface IBuildModeActions
-    {
-        void OnMovementInput(InputAction.CallbackContext context);
-        void OnMousePosition(InputAction.CallbackContext context);
-        void OnSecondary(InputAction.CallbackContext context);
-        void OnPrimary(InputAction.CallbackContext context);
     }
 }

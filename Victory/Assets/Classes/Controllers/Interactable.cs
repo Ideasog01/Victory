@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public enum InteractableType { Resource, Chest, Dialogue, Weapon, SpecialItem };
+    public enum InteractableType { Resource, Chest, Dialogue, Weapon };
 
     [SerializeField]
     private InteractableType interactableType;
@@ -48,11 +48,6 @@ public class Interactable : MonoBehaviour
             if(interactableType == InteractableType.Weapon)
             {
                 this.GetComponent<WeaponInteractive>().EquipWeapon();
-            }
-
-            if(interactableType == InteractableType.SpecialItem)
-            {
-                this.GetComponent<SpecialItemInteractive>().EquipSpecialItem();
             }
 
             _isActive = false;

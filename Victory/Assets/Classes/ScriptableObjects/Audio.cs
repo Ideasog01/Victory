@@ -4,4 +4,10 @@
 public class Audio : ScriptableObject
 {
     public AudioClip audioClip;
+
+    public float volume;
+
+    public bool isMusic;
+
+    public string audioName;
 }

@@ -47,18 +47,48 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 _targetRotation;
 
+    private float _oldMovementSpeed;
+
+    private Rigidbody _enemyRb;
+    private Vector3 _appliedForce;
+    private float _forceTimer;
+    private bool _forceActivated;
+
+
     private List<StatusEffect> enemyStatusEffects = new List<StatusEffect>();
 
     private void Awake()
     {
+        _enemyRb = this.GetComponent<Rigidbody>();
         _enemyAnimator = this.GetComponent<Animator>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         _enemyHealthSlider = this.transform.GetChild(1).GetChild(0).GetComponent<Slider>();
 
         _playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
-
+        _oldMovementSpeed = _navMeshAgent.speed;
         _characterHealth = characterMaxHealth;
         DisplayEnemyHealth();
+    }
+
+    private void FixedUpdate()
+    {
+        if(_forceActivated)
+        {
+            if (_forceTimer > 0)
+            {
+                _enemyRb.AddForce(_appliedForce);
+                _navMeshAgent.enabled = false;
+                _forceTimer -= Time.deltaTime * 1;
+            }
+            else
+            {
+                _enemyRb.velocity = Vector3.zero;
+                _enemyRb.angularVelocity = Vector3.zero;
+                _navMeshAgent.enabled = true;
+                _forceActivated = false;
+            }
+        }
+        
     }
 
     public Animator EnemyAnimator
@@ -109,30 +139,65 @@ public class EnemyController : MonoBehaviour
         get { return _enemyDestination; }
     }
 
+    public NavMeshAgent EnemyNavMeshAgent
+    {
+        get { return _navMeshAgent; }
+    }
+
+    public void SetMovementSpeed(float amount)
+    {
+        if(amount == 0)
+        {
+            if(_navMeshAgent != null)
+            {
+                _navMeshAgent.speed = _oldMovementSpeed;
+            }
+        }
+        else
+        {
+            if (_navMeshAgent != null)
+            {
+                _oldMovementSpeed = _navMeshAgent.speed;
+                _navMeshAgent.speed -= amount;
+            }
+        }
+    }
+
+    public void ApplyForce(Vector3 direction, float force, float duration)
+    {
+        _forceTimer = duration;
+        _appliedForce = direction * force;
+        _forceActivated = true;
+    }
+
     public void TakeDamage(int amount)
     {
-        _characterHealth -= amount;
-
-        DisplayEnemyHealth();
-
-        if(_characterHealth <= 0)
+        if(this.gameObject != null)
         {
-            if(PlayerController.nearbyEnemyList.Contains(this))
-            {
-                PlayerController.nearbyEnemyList.Remove(this);
+            _characterHealth -= amount;
 
-                if(PlayerController.currentTarget == this)
+            DisplayEnemyHealth();
+
+            if (_characterHealth <= 0)
+            {
+                if (PlayerController.nearbyEnemyList.Contains(this))
                 {
-                    if(PlayerController.nearbyEnemyList.Count > 0)
+                    PlayerController.nearbyEnemyList.Remove(this);
+
+                    if (PlayerController.currentTarget == this)
                     {
-                        PlayerController.currentTarget = PlayerController.nearbyEnemyList[0];
+                        if (PlayerController.nearbyEnemyList.Count > 0)
+                        {
+                            PlayerController.currentTarget = PlayerController.nearbyEnemyList[0];
+                        }
                     }
                 }
-            }
 
-            GameManager.playerController.AddExperience(enemyXp);
-            GameManager.playerController.AddSpecialCharge(enemySpecialCharge);
-            Destroy(this.gameObject);
+                GameManager.playerController.AddExperience(enemyXp);
+                GameManager.playerController.AddSpecialCharge(enemySpecialCharge);
+
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -170,8 +235,11 @@ public class EnemyController : MonoBehaviour
 
     public void SetEnemyDestination(Vector3 position)
     {
-        _navMeshAgent.SetDestination(position);
-        _enemyDestination = position;
+        if(_navMeshAgent.isActiveAndEnabled)
+        {
+            _navMeshAgent.SetDestination(position);
+            _enemyDestination = position;
+        }
     }
 
     public void EnemyAIStateMachine()
@@ -186,7 +254,10 @@ public class EnemyController : MonoBehaviour
 
         if(distanceToPlayer < stoppingThreshold)
         {
-            SetEnemyDestination(this.transform.position);
+            if(_navMeshAgent.isActiveAndEnabled)
+            {
+                SetEnemyDestination(this.transform.position);
+            }
         }
 
         if(distanceToPlayer < attackThreshold)

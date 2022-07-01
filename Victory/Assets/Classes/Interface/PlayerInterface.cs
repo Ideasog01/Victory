@@ -35,16 +35,22 @@ public class PlayerInterface : MonoBehaviour
     private TextMeshProUGUI ability2CooldownText;
 
     [SerializeField]
+    private TextMeshProUGUI ability3CooldownText;
+
+    [SerializeField]
+    private TextMeshProUGUI ability4CooldownText;
+
+    [SerializeField]
     private Image ability1Icon;
 
     [SerializeField]
     private Image ability2Icon;
 
     [SerializeField]
-    private Image primaryIcon; 
+    private Image ability3Icon; 
 
     [SerializeField]
-    private Image secondaryIcon;
+    private Image ability4Icon;
 
     [Header("Respawn Screen")]
 
@@ -69,6 +75,10 @@ public class PlayerInterface : MonoBehaviour
 
     private Ability _ability2;
 
+    private Ability _ability3;
+
+    private Ability _ability4;
+
     private int _targetXp;
 
     [Header("Interact Prompt")]
@@ -91,20 +101,22 @@ public class PlayerInterface : MonoBehaviour
         get { return ability2Icon; }
     }
 
-    public Image PrimaryIcon
+    public Image Ability3Icon
     {
-        get { return primaryIcon; }
+        get { return ability3Icon; }
     }
 
-    public Image SecondaryIcon
+    public Image Ability4Icon
     {
-        get { return secondaryIcon; }
+        get { return ability4Icon; }
     }
 
     private void Awake()
     {
-        _ability1 = GameManager.playerController.Ab1;
-        _ability2 = GameManager.playerController.Ab2;
+        _ability1 = GameManager.playerController.ability1;
+        _ability2 = GameManager.playerController.ability2;
+        _ability3 = GameManager.playerController.ability3;
+        _ability4 = GameManager.playerController.ability4;
 
         _playerData = GameObject.Find("GlobalManager").GetComponent<GlobalManager>().playerData;
 
@@ -200,6 +212,24 @@ public class PlayerInterface : MonoBehaviour
         else
         {
             ability2CooldownText.text = "";
+        }
+
+        if (_ability3.abilityCooldown > 0)
+        {
+            ability3CooldownText.text = _ability3.abilityCooldown.ToString("F0");
+        }
+        else
+        {
+            ability3CooldownText.text = "";
+        }
+
+        if (_ability4.abilityCooldown > 0)
+        {
+            ability4CooldownText.text = _ability4.abilityCooldown.ToString("F0");
+        }
+        else
+        {
+            ability4CooldownText.text = "";
         }
     }
 

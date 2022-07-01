@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 8031783735394569233}
   - component: {fileID: 8031783735394569235}
   - component: {fileID: 8031783735394569228}
+  - component: {fileID: 8570961670546157949}
   m_Layer: 6
   m_Name: SkeletonArcher
   m_TagString: Enemy
@@ -262,7 +263,7 @@ MonoBehaviour:
   patrolLocations: []
   enemySpecialCharge: 20
   enemyXp: 20
-  attackCooldown: 0.782
+  attackCooldown: 1.5
   arrowPrefab: {fileID: 4608016265751428362, guid: 5bd6b0682cc9a6f4d9be298964e656c2,
     type: 3}
 --- !u!136 &8031783735394569233
@@ -321,6 +322,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &8570961670546157949
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8031783735394569239}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8031783735568520967
 GameObject:
   m_ObjectHideFlags: 0
