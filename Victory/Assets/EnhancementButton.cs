@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class EnhancementButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
+    private bool enhancementEquipSlot;
 
     private ClassInterface _classInterface;
 
@@ -23,11 +25,27 @@ public class EnhancementButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        _classInterface.DisplayEnhancementDetails(_enhancement, this.transform.position);
+        if(!enhancementEquipSlot)
+        {
+            _classInterface.DisplayEnhancementDetails(_enhancement, this.transform.position);
+            _classInterface.selectedEnhancement = _enhancement;
+        }
+        else
+        {
+            _classInterface.enhancementSlotActive = this;
+        }
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        _classInterface.CloseEnhancementDetails();
+        if(!enhancementEquipSlot)
+        {
+            _classInterface.CloseEnhancementDetails();
+            _classInterface.selectedEnhancement = null;
+        }
+        else
+        {
+            _classInterface.enhancementSlotActive = null;
+        }
     }
 }

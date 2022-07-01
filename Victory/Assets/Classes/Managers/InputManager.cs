@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     private PlayerController _playerController;
     private InventoryInterface _inventoryInterface;
     private GameManager _gameManager;
+    private ClassInterface _classInterface;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class InputManager : MonoBehaviour
         _playerInput.Gameplay.Secondary.performed += ctx => _playerController.MouseInteract();
 
         _playerInput.Gameplay.Inventory.performed += ctx => _inventoryInterface.DisplayInventory();
+        _playerInput.Gameplay.Primary.canceled += ctx => _classInterface.EquipEnhancement();
 
         _playerInput.Gameplay.Primary.started += ctx => _playerController.PrimaryActivate();
         _playerInput.Gameplay.Primary.canceled += ctx => _playerController.PrimaryDeactivate();

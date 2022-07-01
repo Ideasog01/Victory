@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class ClassInterface : MonoBehaviour
 {
+    public Enhancement selectedEnhancement;
+
+    public EnhancementButton enhancementSlotActive;
+
     [SerializeField]
     private GameObject classInterface;
 
@@ -15,6 +19,20 @@ public class ClassInterface : MonoBehaviour
     [SerializeField]
     private GameObject enhancementDetailPanel;
 
+    [Header("Enhancement Panel Display")]
+
+    [SerializeField]
+    private TextMeshProUGUI enhancementNamePanelText;
+
+    [SerializeField]
+    private TextMeshProUGUI enhancementDescriptionPanelText;
+
+    [SerializeField]
+    private Vector2 enhancementDetailPanelOffset;
+
+    [SerializeField]
+    private EnhancementButton[] enhancementButtons;
+
     [Header("Enhancement Display")]
 
     [SerializeField]
@@ -22,12 +40,6 @@ public class ClassInterface : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI enhancementDescriptionText;
-
-    [SerializeField]
-    private Vector2 enhancementDetailPanelOffset;
-
-    [SerializeField]
-    private EnhancementButton[] enhancementButtons;
 
     [Header("Ability Display")]
 
@@ -39,6 +51,9 @@ public class ClassInterface : MonoBehaviour
 
     [SerializeField]
     private Image abilityIcon;
+
+    [SerializeField]
+    private Button[] enhancementSlotButtons;
 
     private Ability _selectedAbility;
 
@@ -70,6 +85,7 @@ public class ClassInterface : MonoBehaviour
         classInterface.SetActive(true);
         playerHud.SetActive(false);
         LoadClassDetails();
+        SelectAbility(0);
     }
 
     public void CloseClassScreen()
@@ -119,7 +135,16 @@ public class ClassInterface : MonoBehaviour
 
     public void SelectEnhancementSlot(int index)
     {
+        if(_selectedAbility != null)
+        {
+            Enhancement enhancement = _selectedAbility.abilityEnhancements[index];
 
+            if (enhancement != null)
+            {
+                enhancementNameText.text = enhancement.enhancementName;
+                enhancementDescriptionText.text = enhancement.enhancementDescription;
+            }
+        }
     }
 
     public void DisplayEnhancementDetails(Enhancement enhancement, Vector2 slotPosition)
@@ -129,15 +154,14 @@ public class ClassInterface : MonoBehaviour
             enhancementDetailPanel.SetActive(true);
             enhancementDetailPanel.transform.position = slotPosition + enhancementDetailPanelOffset;
 
-            enhancementNameText.text = enhancement.enhancementName;
-            enhancementDescriptionText.text = enhancement.enhancementDescription;
+            enhancementNamePanelText.text = enhancement.enhancementName;
+            enhancementDescriptionPanelText.text = enhancement.enhancementDescription;
         }
     }
 
     public void CloseEnhancementDetails()
     {
         enhancementDetailPanel.SetActive(false);
-
     }
 
     private void LoadClassDetails()
@@ -148,5 +172,25 @@ public class ClassInterface : MonoBehaviour
             classDescriptionText.text = _globalManager.playerData.voidServantDescription;
             classIcon.sprite = _globalManager.playerData.voidServantIcon;
         }
+    }
+
+    public void EquipEnhancement()
+    {
+        if(enhancementSlotActive != null)
+        {
+            enhancementSlotActive.AssignedEnhancement = selectedEnhancement;
+            LoadEquipedEnhancements();
+            selectedEnhancement = null;
+            enhancementSlotActive = null;
+        }
+        else
+        {
+            selectedEnhancement = null;
+        }
+    }
+
+    private void LoadEquipedEnhancements()
+    {
+
     }
 }
