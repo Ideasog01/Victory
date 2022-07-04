@@ -27,6 +27,10 @@ public class PlayerData : ScriptableObject
 
     public enum DifficultyLevel { Champion, Hero, Legend };
 
+    public Enhancement[] equipedEnhancements;
+
+    public Enhancement[] abilityEnhancements;
+
     [Header("Void Servant Class")]
 
     public Sprite voidServantIcon;

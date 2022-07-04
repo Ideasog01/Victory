@@ -19,8 +19,22 @@ MonoBehaviour:
   positionOnExit: {x: 0, y: 0, z: 0}
   playerLevel: 1
   playerMaxExperience: 100
-  playerExperience: 0
+  playerExperience: 40
   difficultyLevel: 0
+  equipedEnhancements:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  abilityEnhancements:
+  - {fileID: 11400000, guid: 2707ae787ee445f40bf0bfb72e9c26ef, type: 2}
+  - {fileID: 11400000, guid: 8b57335f1972aa543a20b0fbd5db1ede, type: 2}
+  - {fileID: 11400000, guid: ef7aac70842fa3b4e930da7c2194c6b2, type: 2}
+  - {fileID: 11400000, guid: 736ba87ac9f0dbd4fa247779e878ba1d, type: 2}
+  - {fileID: 11400000, guid: 2707ae787ee445f40bf0bfb72e9c26ef, type: 2}
+  - {fileID: 11400000, guid: 2707ae787ee445f40bf0bfb72e9c26ef, type: 2}
+  - {fileID: 11400000, guid: 2707ae787ee445f40bf0bfb72e9c26ef, type: 2}
+  - {fileID: 11400000, guid: 2707ae787ee445f40bf0bfb72e9c26ef, type: 2}
   voidServantIcon: {fileID: 21300000, guid: cdec13907ffc75749ab2ed436bec6b14, type: 3}
   voidServantDescription: This is the void servant description. Here, details of
     the class are outlined including backstory and abilities.

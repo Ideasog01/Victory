@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public enum InteractableType { Resource, Chest, Dialogue, Weapon };
+    public enum InteractableType { Resource, Chest, Dialogue, Weapon, Campfire };
 
     [SerializeField]
     private InteractableType interactableType;
 
     [SerializeField]
     private float distanceThreshold = 5f;
+
+    [SerializeField]
+    private bool inputRequired;
+
+    [SerializeField]
+    private bool multipleInteractions;
 
     private PlayerController _playerController;
 
@@ -49,8 +55,16 @@ public class Interactable : MonoBehaviour
             {
                 this.GetComponent<WeaponInteractive>().EquipWeapon();
             }
+            
+            if(interactableType == InteractableType.Campfire)
+            {
+                this.GetComponent<Campfire>().CampFireHeal();
+            }
 
-            _isActive = false;
+            if(!multipleInteractions)
+            {
+                _isActive = false;
+            }
         }
     }
 
@@ -69,16 +83,26 @@ public class Interactable : MonoBehaviour
             {
                 if (distanceToPlayer < distanceThreshold)
                 {
-                    GameManager.playerInterface.DisplayInteractPrompt(true);
-                    PlayerController.nearbyInteractable = this;
+                    if(inputRequired)
+                    {
+                        GameManager.playerInterface.DisplayInteractPrompt(true);
+                        PlayerController.nearbyInteractable = this;
+                    }
+                    else
+                    {
+                        Interact();
+                    }
                 }
             }
             else
             {
-                if (distanceToPlayer >= distanceThreshold)
+                if(inputRequired)
                 {
-                    GameManager.playerInterface.DisplayInteractPrompt(false);
-                    PlayerController.nearbyInteractable = null;
+                    if (distanceToPlayer >= distanceThreshold)
+                    {
+                        GameManager.playerInterface.DisplayInteractPrompt(false);
+                        PlayerController.nearbyInteractable = null;
+                    }
                 }
             }
         }

@@ -144,5 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableType: 0
   distanceThreshold: 6
+  inputRequired: 1
+  multipleInteractions: 0
   resourceItem: {fileID: 11400000, guid: aaea617fb3f45ae47ab33ff8aa155b31, type: 2}
   resourceAmount: 140

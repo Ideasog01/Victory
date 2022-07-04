@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e6be6663d2ba148aa759811e4e6928, type: 3}
-  m_Name: EnhancementTest
+  m_Name: EnhancementTest 2
   m_EditorClassIdentifier: 
   enhancementName: Enhanced Test
   enhancementDescription: This is a test for the enhancement display. This text will
     usually explain the enhancement and what changes/benefits it grants to the ability.
-  enhancementIcon: {fileID: 21300000, guid: c890dd06d4a350946ab11e4778bf47d8, type: 3}
+  enhancementIcon: {fileID: 21300000, guid: c46be55a65cb30e44b7c89e3c0d531da, type: 3}
+  isEquiped: 0

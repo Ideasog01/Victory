@@ -553,7 +553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bccd332882fcd14b9e4c377e432c587, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -614,7 +614,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 18398651}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 906901498}
+        m_TargetAssemblyTypeName: ClassInterface, Assembly-CSharp
+        m_MethodName: SelectEnhancementSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &18398654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,6 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 0
 --- !u!1 &21511609
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,6 +5670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &338050516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8545,6 +8559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &543831249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9482,6 +9497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &605821288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9596,6 +9612,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619645552}
+  m_CullTransparentMesh: 1
+--- !u!1 &633663529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633663530}
+  - component: {fileID: 633663532}
+  - component: {fileID: 633663531}
+  m_Layer: 5
+  m_Name: EnhancementIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &633663530
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633663529}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2018790100}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &633663531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633663529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4029a9cfeb86f134c9c5af05993eaac8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &633663532
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633663529}
   m_CullTransparentMesh: 1
 --- !u!1 &635870842
 GameObject:
@@ -17517,6 +17609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedEnhancement: {fileID: 0}
+  enhancementSlotActive: {fileID: 0}
   classInterface: {fileID: 380965194}
   playerHud: {fileID: 1734556315}
   enhancementDetailPanel: {fileID: 212593912}
@@ -17537,10 +17630,17 @@ MonoBehaviour:
   abilityNameText: {fileID: 1517176456}
   abilityDescriptionText: {fileID: 739643138}
   abilityIcon: {fileID: 2017662076}
-  enhancementSlotButtons: []
+  enhancementSlotButtons:
+  - {fileID: 18398654}
+  - {fileID: 1529494964}
+  - {fileID: 1907414627}
+  - {fileID: 1684966172}
   classNameText: {fileID: 1290049320}
   classDescriptionText: {fileID: 1534699365}
   classIcon: {fileID: 1959155452}
+  enhancementHover: {fileID: 2018790099}
+  enhancementHoverIcon: {fileID: 633663531}
+  enhancementHoverOffset: {x: 45, y: -50}
 --- !u!1 &920396223
 GameObject:
   m_ObjectHideFlags: 0
@@ -19666,7 +19766,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3259668, y: 1}
+    m_SensorSize: {x: 1.2552487, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19742,6 +19842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &1088392996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21706,7 +21807,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3259668, y: 1}
+    m_SensorSize: {x: 1.2552487, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -22780,6 +22881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &1339562625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22866,7 +22968,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3259668, y: 1}
+    m_SensorSize: {x: 1.2552487, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -23369,6 +23471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableType: 3
   distanceThreshold: 5
+  inputRequired: 0
+  multipleInteractions: 0
   weaponToEquip: {fileID: 11400000, guid: 492de8d97c7060f4b875c381e4a1ed6f, type: 2}
 --- !u!4 &1359559462
 Transform:
@@ -23834,6 +23938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &1381588361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24316,6 +24421,7 @@ RectTransform:
   - {fileID: 131861624}
   - {fileID: 30628247}
   - {fileID: 2145185186}
+  - {fileID: 2018790100}
   m_Father: {fileID: 252852433}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26145,7 +26251,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1529494962}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 906901498}
+        m_TargetAssemblyTypeName: ClassInterface, Assembly-CSharp
+        m_MethodName: SelectEnhancementSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1529494962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26166,7 +26284,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bccd332882fcd14b9e4c377e432c587, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26196,6 +26314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 0
 --- !u!1 &1534699363
 GameObject:
   m_ObjectHideFlags: 0
@@ -28022,7 +28141,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3259668, y: 1}
+    m_SensorSize: {x: 1.2552487, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28618,7 +28737,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1684966170}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 906901498}
+        m_TargetAssemblyTypeName: ClassInterface, Assembly-CSharp
+        m_MethodName: SelectEnhancementSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1684966170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28639,7 +28770,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bccd332882fcd14b9e4c377e432c587, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28669,6 +28800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 0
 --- !u!1 &1696311800
 GameObject:
   m_ObjectHideFlags: 0
@@ -31434,6 +31566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!114 &1888717068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31838,7 +31971,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1907414625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 906901498}
+        m_TargetAssemblyTypeName: ClassInterface, Assembly-CSharp
+        m_MethodName: SelectEnhancementSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1907414625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31859,7 +32004,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bccd332882fcd14b9e4c377e432c587, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31889,6 +32034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 0
 --- !u!1 &1920401443
 GameObject:
   m_ObjectHideFlags: 0
@@ -32424,6 +32570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableType: 3
   distanceThreshold: 5
+  inputRequired: 0
+  multipleInteractions: 0
   weaponToEquip: {fileID: 11400000, guid: 3e258b2d8bd76404fa47ef0cacc57fcb, type: 2}
 --- !u!1 &1957157334
 GameObject:
@@ -33195,6 +33343,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017662074}
   m_CullTransparentMesh: 1
+--- !u!1 &2018790099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018790100}
+  - component: {fileID: 2018790102}
+  - component: {fileID: 2018790101}
+  m_Layer: 5
+  m_Name: EnhancementIconBorder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2018790100
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018790099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 633663530}
+  m_Father: {fileID: 1416891034}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2018790101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018790099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.18039216, g: 0.20784315, b: 0.2509804, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2018790102
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018790099}
+  m_CullTransparentMesh: 1
 --- !u!1 &2041982297
 GameObject:
   m_ObjectHideFlags: 0
@@ -33831,6 +34056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c14237ef11656947a8390fbba12daa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnhancementOption: 1
 --- !u!1 &2113964420
 GameObject:
   m_ObjectHideFlags: 0

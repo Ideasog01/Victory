@@ -23,10 +23,6 @@ public class Ability : ScriptableObject
 
     public Sprite abilityIcon;
 
-    public Enhancement[] equipedEnhancements;
-
-    public Enhancement[] abilityEnhancements;
-
     public string abilityName;
 
     [TextArea(10, 5)]

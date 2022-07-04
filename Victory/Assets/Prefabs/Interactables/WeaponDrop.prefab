@@ -130,4 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableType: 3
   distanceThreshold: 5
+  inputRequired: 1
+  multipleInteractions: 0
   weaponToEquip: {fileID: 11400000, guid: 3e258b2d8bd76404fa47ef0cacc57fcb, type: 2}

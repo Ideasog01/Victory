@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EnhancementButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
-    private bool enhancementEquipSlot;
+    private bool isEnhancementOption;
 
     private ClassInterface _classInterface;
 
     private Enhancement _enhancement;
+
+    private Image _enhancementIcon;
 
     public Enhancement AssignedEnhancement
     {
@@ -21,14 +24,17 @@ public class EnhancementButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private void Awake()
     {
         _classInterface = GameObject.Find("GameManager").GetComponent<ClassInterface>();
+        _enhancementIcon = this.GetComponent<Image>();
     }
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        if(!enhancementEquipSlot)
+        if(isEnhancementOption)
         {
             _classInterface.DisplayEnhancementDetails(_enhancement, this.transform.position);
             _classInterface.selectedEnhancement = _enhancement;
+
+            Debug.Log("Player hovered over enhancement option, assigning this enhancement to selectedEnhancement variable in ClassInterface");
         }
         else
         {
@@ -38,14 +44,21 @@ public class EnhancementButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        if(!enhancementEquipSlot)
+        if(isEnhancementOption)
         {
             _classInterface.CloseEnhancementDetails();
-            _classInterface.selectedEnhancement = null;
         }
         else
         {
             _classInterface.enhancementSlotActive = null;
+        }
+    }
+
+    public void DisplayEnhancementIcon()
+    {
+        if(_enhancement != null)
+        {
+            _enhancementIcon.sprite = _enhancement.enhancementIcon;
         }
     }
 }

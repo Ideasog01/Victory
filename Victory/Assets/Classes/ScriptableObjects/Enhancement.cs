@@ -9,4 +9,8 @@ public class Enhancement : ScriptableObject
 
     [TextArea(10, 5)]
     public string enhancementDescription;
+
+    public Sprite enhancementIcon;
+
+    public bool isEquiped;
 }

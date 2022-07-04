@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
 
         _playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
         _gameManager = this.GetComponent<GameManager>();
+        _classInterface = _gameManager.GetComponent<ClassInterface>();
         _inventoryInterface = this.GetComponent<InventoryInterface>();
         InitialiseExplorationInput();
 
@@ -36,6 +37,7 @@ public class InputManager : MonoBehaviour
 
         _playerInput.Gameplay.Inventory.performed += ctx => _inventoryInterface.DisplayInventory();
         _playerInput.Gameplay.Primary.canceled += ctx => _classInterface.EquipEnhancement();
+        _playerInput.Gameplay.Primary.started += ctx => _classInterface.SelectEnhancementOption();
 
         _playerInput.Gameplay.Primary.started += ctx => _playerController.PrimaryActivate();
         _playerInput.Gameplay.Primary.canceled += ctx => _playerController.PrimaryDeactivate();

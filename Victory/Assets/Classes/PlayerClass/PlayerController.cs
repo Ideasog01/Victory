@@ -141,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        playerMaxHealth *= _playerData.playerLevel;
         _playerHealth = playerMaxHealth;
         GameManager.playerInterface.DisplayPlayerHealth();
         GameManager.playerInterface.DisplayXP();
